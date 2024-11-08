@@ -1,0 +1,29 @@
+<div class="perfil">
+    <h2>Mi Perfil de Jugador</h2>
+    
+    <div class="botones">
+      <button (click)="mostrarJuegos()">Mis Juegos</button>
+      <button (click)="mostrarLogros()">Mis Logros</button>
+    </div>
+  
+    <div *ngIf="vistaActual === 'juegos'">
+      <h3>Mis Juegos</h3>
+      <ul class="lista-juegos">
+        <li *ngFor="let juego of juegos">
+          <h4>{{juego.nombre}}</h4>
+          <p>Horas jugadas: {{juego.horas}}</p>
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="vistaActual === 'logros'">
+      <h3>Mis Logros</h3>
+      <ul class="lista-logros">
+        <li *ngFor="let logro of logros">
+          {{logro.nombre}} - {{logro.completado ? '✅' : '❌'}}
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+ 

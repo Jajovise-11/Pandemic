@@ -1,0 +1,18 @@
+<div class="menu">
+    <h1>Menú Principal</h1>
+    <ul>
+      <li><button (click)="nuevaPartida()">Nueva Partida</button></li>
+      <li><button (click)="cargarPartida()">Cargar Partida</button></li>
+      <li><button (click)="mostrarInformacion()">Información</button></li>
+      <li><button (click)="mostrarRanking()">Ranking de Puntuaciones</button></li>
+      <li><button (click)="mostrarAutores()">Autores</button></li>
+      <li><button (click)="mostrarVersion()">Versión</button></li>
+    </ul>
+
+    <button class="" (click)="routacion('login')">Inicio de Sesion</button>
+    
+    
+    <div class="informacion" *ngIf="informacion">
+      <p>{{ informacion }}</p>
+    </div>
+  </div>
