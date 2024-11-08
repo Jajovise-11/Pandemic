@@ -1,12 +1,8 @@
 import { Routes } from '@angular/router';
-import { MenuComponent } from './components/menu/menu.component';
-import { PerfilUsuarioComponent } from './perfil/perfil-usuario/perfil-usuario.component';
-import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
-    {path: '',component: LoginComponent}, 
-    {path: 'login',component: LoginComponent},
-    {path: 'perfil-usuario', component: PerfilUsuarioComponent},
-    {path:'menu', component: MenuComponent}
-    
-];
+    { path: '', loadChildren: () => import('./components/components.module').then(m => m.ComponentsModule) },
+    { path: 'perfil', loadChildren: () => import('./perfil/perfil.module').then(m => m.PerfilModule) },
+    { path: 'components', loadChildren: () => import('./components/components.module').then(m => m.ComponentsModule) },
+
+    ];
