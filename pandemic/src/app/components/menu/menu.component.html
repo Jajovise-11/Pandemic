@@ -1,10 +1,11 @@
-<div class="menu">
-    <h1>Menú Principal</h1>
+<body>
+  <div class="menu">
+    <h1>PANDEMIC</h1>
     <ul>
       <li><button (click)="nuevaPartida()">Nueva Partida</button></li>
       <li><button (click)="cargarPartida()">Cargar Partida</button></li>
-      <li><button (click)="mostrarInformacion()">Información</button></li>
-      <li><button (click)="mostrarRanking()">Ranking de Puntuaciones</button></li>
+      <li><button class="" routerLink="../informacion">Información</button></li>
+      <li><button (click)="mostrarRanking()" >Ranking de Puntuaciones</button></li>
       <li><button (click)="mostrarAutores()">Autores</button></li>
       <li><button (click)="mostrarVersion()">Versión</button></li>
     </ul>
@@ -16,3 +17,5 @@
       <p>{{ informacion }}</p>
     </div>
   </div>
+
+</body>

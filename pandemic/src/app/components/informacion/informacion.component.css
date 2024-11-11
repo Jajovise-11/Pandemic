@@ -1,0 +1,49 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  padding: auto;
+  margin: 0px;
+  background-image: url(/img/fondo1.jpeg);
+  background-size: cover;  
+  background-repeat: no-repeat;
+}
+
+.informacion {
+  padding: 18%;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgb(0, 0, 0);
+  text-align: center;
+}
+
+.informacion h2 {
+  font-size: 40px;
+ 
+  color: #000000;
+}
+
+.informacion p {
+  font-size: 16px;
+  line-height: 2.0;
+  color: #555;
+
+}
+
+.button {
+ 
+  font-size: 18px;
+  color: #fff;
+  background-color: #4a90e2;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+
+.routerLink:hover {
+  color: #0056b3;
+}
