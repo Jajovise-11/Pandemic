@@ -1,0 +1,5 @@
+[
+    {"nombre":"Madrid", "x": 200, "y": 300},
+    {"nombre":"Paris", "x": 300, "y": 300},
+    {"nombre":"Londres", "x": 400, "y": 400}
+]

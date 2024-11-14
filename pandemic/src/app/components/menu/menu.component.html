@@ -2,15 +2,16 @@
   <div class="menu">
     <h1>PANDEMIC</h1>
     <ul>
-      <li><button (click)="nuevaPartida()">Nueva Partida</button></li>
-      <li><button (click)="cargarPartida()">Cargar Partida</button></li>
-      <li><button class="" routerLink="../informacion">Información</button></li>
+      <li><button class="" routerLink="/nueva">Nueva Partida</button></li>
+      <li><button class="" routerLink="/cargar">Cargar Partida</button></li>
+      <li><button class="" routerLink="/informacion">Información</button></li>
       <li><button (click)="mostrarRanking()" >Ranking de Puntuaciones</button></li>
       <li><button (click)="mostrarAutores()">Autores</button></li>
       <li><button (click)="mostrarVersion()">Versión</button></li>
+      <li><button class="" routerLink="/perfil">Perfil</button></li>
     </ul>
 
-    <button class="" routerLink="">Inicio de Sesion</button>
+    <button class="" routerLink="">Salir del Juego</button>
     
     
     <div class="informacion" *ngIf="informacion">

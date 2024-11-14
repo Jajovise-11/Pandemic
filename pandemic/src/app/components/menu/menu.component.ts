@@ -12,10 +12,6 @@ import { RouterLink } from '@angular/router';
 export class MenuComponent {
   informacion: string = '';
 
-  nuevaPartida() {
-    this.informacion = 'Iniciando una nueva partida...';
-  }
-
   cargarPartida() {
     this.informacion = 'Cargando la partida guardada...';
   }
@@ -34,6 +30,9 @@ export class MenuComponent {
 
   mostrarVersion() {
     this.informacion = 'Versión del juego: 1.0';
+  }
+  mostrarPerfil() {
+    this.informacion = '';
   }
 
   
