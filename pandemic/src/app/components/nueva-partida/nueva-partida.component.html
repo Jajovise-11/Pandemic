@@ -1,7 +1,7 @@
 <body>
     <div class="container">
         <p>nueva-partida works!</p>
-        <!--<div *ngFor="let ciudad of ciudades">{{ciudad.nombre}} -> ({{ciudad.x}}, {{ciudad.y}})</div>-->
+        <div *ngFor="let ciudad of ciudades">{{ciudad.name}} -> ({{ciudad.coordinates}}, {{ciudad.x}}, {{ciudad.y}}, {{ciudad.connectedCities}},{{ciudad.characters}}, {{ciudad.researchCenter}}, {{ciudad.diseaseCount}})</div>
         <button class="" routerLink="../menu">Menu Principal</button>
     </div>
 </body>
