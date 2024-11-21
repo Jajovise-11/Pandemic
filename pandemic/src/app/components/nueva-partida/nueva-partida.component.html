@@ -1,9 +1,33 @@
-<body>
-    <div class="container">
-        <p>nueva-partida works!</p>
-        <div *ngFor="let ciudad of ciudades">{{ciudad.name}} -> ({{ciudad.coordinates}}, {{ciudad.x}}, {{ciudad.y}}, {{ciudad.connectedCities}},{{ciudad.characters}}, {{ciudad.researchCenter}}, {{ciudad.diseaseCount}})</div>
-        <button class="" routerLink="../menu">Menu Principal</button>
+<div class="container">
+    
+    <img src="/img/mapa_mundo.png" alt="Mapa del mundo" class="map-image">
+    
+    <h1>PANDEMIC</h1>
+    <div
+      *ngFor="let ciudad of ciudades"
+      class="city-button"
+      [style.left.px]="ciudad.coordinates.x"
+      [style.top.px]="ciudad.coordinates.y"
+      (click)="mostrarInfo(ciudad)"
+    >
     </div>
-</body>
     
-    
+
+    <div *ngIf="ciudadSeleccionada" class="city-info">
+      <h3>{{ ciudadSeleccionada.name }}</h3>
+      <p><strong>Región:</strong> {{ ciudadSeleccionada.region }}</p>
+      <p><strong>Coordenadas:</strong> ({{ ciudadSeleccionada.coordinates.x }}, {{ ciudadSeleccionada.coordinates.y }})</p>
+      <p><strong>Conexiones:</strong> {{ ciudadSeleccionada.connectedCities.join(', ') }}</p>
+      <p><strong>Centro de investigación:</strong> {{ ciudadSeleccionada.researchCenter ? 'Sí' : 'No' }}</p>
+      <p><strong>Enfermedades:</strong></p>
+      <ul>
+        <li>Verde: {{ ciudadSeleccionada.diseaseCount.green }}</li>
+        <li>Rojo: {{ ciudadSeleccionada.diseaseCount.red }}</li>
+        <li>Azul: {{ ciudadSeleccionada.diseaseCount.blue }}</li>
+        <li>Amarillo: {{ ciudadSeleccionada.diseaseCount.yellow }}</li>
+      </ul>
+    </div>
+  
+    <button routerLink="../menu" class="btn-back">Menú Principal</button>
+  </div>
+  

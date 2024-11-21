@@ -1,48 +1,67 @@
 body {
   font-family: 'Roboto', sans-serif;
-  padding: auto;
-  margin: 0px;
-  background-image: url(/img/fondo1.jpeg);
-  background-size: cover;  
+  margin: 0;
+  padding: 0;
+  background-image: url('/img/fondo1.jpeg');
+  background-size: cover; 
+  background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
 }
+
+
 
 .informacion {
-  padding: 18%;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgb(0, 0, 0);
+  padding: 3rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   text-align: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  max-width: 800px;
+  margin: 2rem auto;
 }
+
 
 .informacion h2 {
-  font-size: 40px;
- 
-  color: #000000;
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1rem;
 }
 
-.informacion p {
-  font-size: 16px;
-  line-height: 2.0;
-  color: #555;
 
+.informacion p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 1.5rem;
 }
 
 .button {
- 
-  font-size: 18px;
+  font-size: 1.2rem;
   color: #fff;
   background-color: #4a90e2;
   border: none;
   border-radius: 25px;
+  padding: 0.8rem 2rem;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
+  transition: all 0.3s ease-in-out;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .button:hover {
   background-color: #0056b3;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
 }
 
+
+.routerLink {
+  color: #4a90e2;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
 
 .routerLink:hover {
   color: #0056b3;

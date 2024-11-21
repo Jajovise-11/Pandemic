@@ -1,28 +1,31 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Ciudad } from '../../models/ciudades.model';
 import { CargarJsonService } from '../../services/cargar-json.service';
- 
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-nueva-partida',
   standalone: true,
   imports: [CommonModule,RouterLink],
   templateUrl: './nueva-partida.component.html',
-  styleUrl: './nueva-partida.component.css'
+  styleUrls: ['./nueva-partida.component.css']
 })
-export class NuevaPartidaComponent {
-
+export class NuevaPartidaComponent implements OnInit {
   ciudades: Ciudad[] = [];
+  ciudadSeleccionada: Ciudad | null = null;
 
-  constructor(private CargarJson: CargarJsonService){}
+  constructor(private cargarJson: CargarJsonService) {}
 
-  ngOnInit(){
-    this.CargarJson.getCiudades().subscribe(response =>{
-      this.ciudades = response
-    })
+  ngOnInit(): void {
+    this.cargarJson.getCiudades().subscribe(response => {
+      this.ciudades = response;
+    });
   }
 
-
+  mostrarInfo(ciudad: Ciudad): void {
+    this.ciudadSeleccionada = ciudad;
+  }
 }
+
 
