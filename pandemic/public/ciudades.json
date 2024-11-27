@@ -3,8 +3,8 @@
       "name": "San Francisco",
       "region": 0,
       "coordinates": {
-        "x": 235,
-        "y": 315
+        "x": 500,
+        "y": 400
       },
       "connectedCities": [
         "Chicago",
@@ -25,8 +25,8 @@
       "name": "Chicago",
       "region": 0,
       "coordinates": {
-        "x": 300,
-        "y": 280
+        "x": 600,
+        "y": 380
       },
       "connectedCities": [
         "San Francisco",
@@ -48,8 +48,8 @@
       "name": "Atlanta",
       "region": 0,
       "coordinates": {
-        "x": 320,
-        "y": 320
+        "x": 620,
+        "y": 410
       },
       "connectedCities": [
         "Chicago",
@@ -69,8 +69,8 @@
       "name": "Montreal",
       "region": 0,
       "coordinates": {
-        "x": 350,
-        "y": 280
+        "x": 650,
+        "y": 350
       },
       "connectedCities": [
         "Chicago",
@@ -90,8 +90,8 @@
       "name": "Nueva York",
       "region": 0,
       "coordinates": {
-        "x": 380,
-        "y": 290
+        "x": 650,
+        "y": 370
       },
       "connectedCities": [
         "Montreal",
@@ -112,8 +112,8 @@
       "name": "Washington",
       "region": 0,
       "coordinates": {
-        "x": 360,
-        "y": 330
+        "x": 650,
+        "y": 390
       },
       "connectedCities": [
         "Montreal",
@@ -134,8 +134,8 @@
       "name": "Londres",
       "region": 0,
       "coordinates": {
-        "x": 700,
-        "y": 230
+        "x": 900,
+        "y": 332
       },
       "connectedCities": [
         "Nueva York",
@@ -156,8 +156,8 @@
       "name": "Madrid",
       "region": 0,
       "coordinates": {
-        "x": 687,
-        "y": 290
+        "x": 895,
+        "y": 385
       },
       "connectedCities": [
         "Nueva York",
@@ -179,8 +179,8 @@
       "name": "Paris",
       "region": 0,
       "coordinates": {
-        "x": 727,
-        "y": 250
+        "x": 925,
+        "y": 350     
       },
       "connectedCities": [
         "Madrid",
@@ -202,8 +202,8 @@
       "name": "Essen",
       "region": 0,
       "coordinates": {
-        "x": 755,
-        "y": 190
+        "x": 940,
+        "y": 335 
       },
       "connectedCities": [
         "Londres",
@@ -224,8 +224,8 @@
       "name": "Milan",
       "region": 0,
       "coordinates": {
-        "x": 755,
-        "y": 235
+        "x": 945,
+        "y": 360 
       },
       "connectedCities": [
         "Essen",
@@ -245,8 +245,8 @@
       "name": "San Petersburgo",
       "region": 0,
       "coordinates": {
-        "x": 815,
-        "y": 210
+        "x": 1020,
+        "y": 300 
       },
       "connectedCities": [
         "Essen",
@@ -266,8 +266,8 @@
       "name": "Los Angeles",
       "region": 3,
       "coordinates": {
-        "x": 275,
-        "y": 355
+        "x": 500,
+        "y": 420
       },
       "connectedCities": [
         "San Francisco",
@@ -288,8 +288,8 @@
       "name": "Miami",
       "region": 3,
       "coordinates": {
-        "x": 380,
-        "y": 360
+        "x": 630,
+        "y": 430
       },
       "connectedCities": [
         "Washington",
@@ -310,8 +310,8 @@
       "name": "Mexico DF",
       "region": 3,
       "coordinates": {
-        "x": 300,
-        "y": 385
+        "x": 555,
+        "y": 450
       },
       "connectedCities": [
         "Los Angeles",
@@ -333,8 +333,8 @@
       "name": "Bogota",
       "region": 3,
       "coordinates": {
-        "x": 400,
-        "y": 460
+        "x": 655,
+        "y": 530
       },
       "connectedCities": [
         "Miami",
@@ -356,8 +356,8 @@
       "name": "Lima",
       "region": 3,
       "coordinates": {
-        "x": 395,
-        "y": 520
+        "x": 645,
+        "y": 580
       },
       "connectedCities": [
         "Mexico DF",
@@ -377,8 +377,8 @@
       "name": "Santiago de Chile",
       "region": 3,
       "coordinates": {
-        "x": 430,
-        "y": 620
+        "x": 650,
+        "y": 690
       },
       "connectedCities": [
         "Lima"
@@ -396,8 +396,8 @@
       "name": "Buenos Aires",
       "region": 3,
       "coordinates": {
-        "x": 453,
-        "y": 670
+        "x": 725,
+        "y": 680
       },
       "connectedCities": [
         "Sao Paulo",
@@ -416,8 +416,8 @@
       "name": "Sao Paulo",
       "region": 3,
       "coordinates": {
-        "x": 520,
-        "y": 570
+        "x": 740,
+        "y": 650
       },
       "connectedCities": [
         "Bogota",
@@ -438,8 +438,8 @@
       "name": "Lagos",
       "region": 3,
       "coordinates": {
-        "x": 710,
-        "y": 450
+        "x": 930,
+        "y": 525
       },
       "connectedCities": [
         "Sao Paulo",
@@ -459,8 +459,8 @@
       "name": "Kinsasa",
       "region": 3,
       "coordinates": {
-        "x": 770,
-        "y": 540
+        "x": 960,
+        "y": 590
       },
       "connectedCities": [
         "Lagos",
@@ -480,8 +480,8 @@
       "name": "Jartum",
       "region": 3,
       "coordinates": {
-        "x": 815,
-        "y": 450
+        "x": 1035,
+        "y": 485
       },
       "connectedCities": [
         "El Cairo",
@@ -502,8 +502,8 @@
       "name": "Johannesburgo",
       "region": 3,
       "coordinates": {
-        "x": 815,
-        "y": 630
+        "x": 1010,
+        "y": 650
       },
       "connectedCities": [
         "Kinsasa",
@@ -522,8 +522,8 @@
       "name": "Argel",
       "region": 2,
       "coordinates": {
-        "x": 730,
-        "y": 330
+        "x": 925,
+        "y": 400
       },
       "connectedCities": [
         "Madrid",
@@ -544,8 +544,8 @@
       "name": "El Cairo",
       "region": 2,
       "coordinates": {
-        "x": 820,
-        "y": 350
+        "x": 1025,
+        "y": 425
       },
       "connectedCities": [
         "Argel",
@@ -565,8 +565,8 @@
       "name": "Riad",
       "region": 2,
       "coordinates": {
-        "x": 895,
-        "y": 385
+        "x": 1065,
+        "y": 450
       },
       "connectedCities": [
         "El Cairo",
@@ -586,8 +586,8 @@
       "name": "Estambul",
       "region": 2,
       "coordinates": {
-        "x": 830,
-        "y": 294
+        "x": 1020,
+        "y": 380
       },
       "connectedCities": [
         "Argel",
@@ -608,8 +608,8 @@
       "name": "Bagdad",
       "region": 2,
       "coordinates": {
-        "x": 880,
-        "y": 320
+        "x": 1080,
+        "y": 400
       },
       "connectedCities": [
         "Estambul",
@@ -630,8 +630,8 @@
       "name": "Moscu",
       "region": 2,
       "coordinates": {
-        "x": 890,
-        "y": 230
+        "x": 1020,
+        "y": 335
       },
       "connectedCities": [
         "Teheran",
@@ -651,8 +651,8 @@
       "name": "Teheran",
       "region": 2,
       "coordinates": {
-        "x": 920,
-        "y": 310
+        "x": 1090,
+        "y": 410
       },
       "connectedCities": [
         "Moscu",
@@ -673,8 +673,8 @@
       "name": "Karachi",
       "region": 2,
       "coordinates": {
-        "x": 980,
-        "y": 355
+        "x": 1120,
+        "y": 450
       },
       "connectedCities": [
         "Teheran",
@@ -696,8 +696,8 @@
       "name": "Bombay",
       "region": 2,
       "coordinates": {
-        "x": 1005,
-        "y": 395
+        "x": 1180,
+        "y": 480
       },
       "connectedCities": [
         "Karachi",
@@ -717,8 +717,8 @@
       "name": "Nueva Delhi",
       "region": 2,
       "coordinates": {
-        "x": 1025,
-        "y": 330
+        "x": 1180,
+        "y": 450
       },
       "connectedCities": [
         "Teheran",
@@ -740,8 +740,8 @@
       "name": "Calcuta",
       "region": 2,
       "coordinates": {
-        "x": 1070,
-        "y": 370
+        "x": 1220,
+        "y": 450
       },
       "connectedCities": [
         "Nueva Delhi",
@@ -762,8 +762,8 @@
       "name": "Madras",
       "region": 2,
       "coordinates": {
-        "x": 1035,
-        "y": 410
+        "x": 1200,
+        "y": 500
       },
       "connectedCities": [
         "Bombay",
@@ -782,32 +782,11 @@
       }
     },
     {
-      "name": "Bombay",
-      "region": 2,
-      "coordinates": {
-        "x": 1005,
-        "y": 395
-      },
-      "connectedCities": [
-        "Karachi",
-        "Madras",
-        "Nueva Delhi"
-      ],
-      "characters": [],
-      "researchCenter": false,
-      "diseaseCount": {
-        "green": 0,
-        "red": 0,
-        "blue": 0,
-        "yellow": 0
-      }
-    },
-    {
       "name": "Yakarta",
       "region": 1,
       "coordinates": {
-        "x": 1150,
-        "y": 525
+        "x": 1280,
+        "y": 580
       },
       "connectedCities": [
         "Madras",
@@ -828,8 +807,8 @@
       "name": "Bangkok",
       "region": 1,
       "coordinates": {
-        "x": 1120,
-        "y": 415
+        "x": 1280,
+        "y": 500
       },
       "connectedCities": [
         "Yakarta",
@@ -851,8 +830,8 @@
       "name": "Hong Kong",
       "region": 1,
       "coordinates": {
-        "x": 1165,
-        "y": 370
+        "x": 1300,
+        "y": 460
       },
       "connectedCities": [
         "Bangkok",
@@ -874,8 +853,8 @@
       "name": "Shanghai",
       "region": 1,
       "coordinates": {
-        "x": 1195,
-        "y": 355
+        "x": 1320,
+        "y": 430
       },
       "connectedCities": [
         "Pekin",
@@ -897,8 +876,8 @@
       "name": "Pekin",
       "region": 1,
       "coordinates": {
-        "x": 1175,
-        "y": 300
+        "x": 1320,
+        "y": 400
       },
       "connectedCities": [
         "Seul",
@@ -917,8 +896,8 @@
       "name": "Seul",
       "region": 1,
       "coordinates": {
-        "x": 1225,
-        "y": 297
+        "x": 1360,
+        "y": 400
       },
       "connectedCities": [
         "Pekin",
@@ -937,8 +916,8 @@
       "name": "Tokio",
       "region": 1,
       "coordinates": {
-        "x": 1280,
-        "y": 290
+        "x": 1390,
+        "y": 400
       },
       "connectedCities": [
         "San Francisco",
@@ -959,8 +938,8 @@
       "name": "Osaka",
       "region": 1,
       "coordinates": {
-        "x": 1255,
-        "y": 320
+        "x": 1390,
+        "y": 420
       },
       "connectedCities": [
         "Tokio",
@@ -979,8 +958,8 @@
       "name": "Taipei",
       "region": 1,
       "coordinates": {
-        "x": 1205,
-        "y": 375
+        "x": 1340,
+        "y": 450
       },
       "connectedCities": [
         "Osaka",
@@ -998,11 +977,11 @@
       }
     },
     {
-      "name": "Ho Chi Minh",
+      "name": "Hanoi",
       "region": 1,
       "coordinates": {
-        "x": 1148,
-        "y": 429
+        "x": 1290,
+        "y": 480
       },
       "connectedCities": [
         "Yakarta",
@@ -1023,8 +1002,8 @@
       "name": "Manila",
       "region": 1,
       "coordinates": {
-        "x": 1200,
-        "y": 420
+        "x": 1340,
+        "y": 470
       },
       "connectedCities": [
         "San Francisco",
@@ -1046,8 +1025,8 @@
       "name": "Sidney",
       "region": 1,
       "coordinates": {
-        "x": 1320,
-        "y": 645
+        "x": 1450,
+        "y": 690
       },
       "connectedCities": [
         "Los Angeles",
