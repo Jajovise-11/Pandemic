@@ -1,8 +1,7 @@
 <div class="container">
-  <!-- Mapa de fondo -->
+
   <img src="/img/mapa_mundo.png" alt="Mapa del mundo" class="map-image">
 
-  <!-- Dropdown de ciudades (con todas las ciudades disponibles) -->
   <div class="city-dropdown">
     <label for="citySelect">Selecciona una ciudad:</label>
     <select id="citySelect" (change)="mostrarInfoDesdeDropdown($event)">
@@ -10,14 +9,12 @@
     </select>
   </div>
 
-  <!-- Representación de las ciudades en el mapa -->
   <div *ngFor="let ciudad of ciudades" class="city-button"
        [style.left.px]="ciudad.coordinates.x"
        [style.top.px]="ciudad.coordinates.y"
        (click)="mostrarInfo(ciudad)">
   </div>
 
-  <!-- Información de la ciudad seleccionada -->
   <div *ngIf="ciudadSeleccionada" class="city-info">
     <h3>{{ ciudadSeleccionada.name }}</h3>
     <p><strong>Región:</strong> {{ ciudadSeleccionada.region }}</p>
@@ -40,6 +37,5 @@
     </div>
   </div>
 
-  <!-- Botón para volver al menú principal -->
   <button routerLink="../menu" class="btn-back">Menú Principal</button>
 </div>

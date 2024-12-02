@@ -38,6 +38,6 @@ export class NuevaPartidaComponent implements OnInit {
 
   calcularProgresoPandemia(ciudad: Ciudad): number {
     const totalEnfermedades = ciudad.diseaseCount.green + ciudad.diseaseCount.red + ciudad.diseaseCount.blue + ciudad.diseaseCount.yellow;
-    return Math.min((totalEnfermedades / 20) * 100, 100);  // Máximo de 20 enfermedades
+    return Math.min((totalEnfermedades / 4) * 100, 100);
   }
 }
