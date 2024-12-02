@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-nueva-partida',
   standalone: true,
-  imports: [CommonModule,RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl: './nueva-partida.component.html',
   styleUrls: ['./nueva-partida.component.css']
 })
@@ -26,6 +26,18 @@ export class NuevaPartidaComponent implements OnInit {
   mostrarInfo(ciudad: Ciudad): void {
     this.ciudadSeleccionada = ciudad;
   }
+
+  mostrarInfoDesdeDropdown(event: any): void {
+    const ciudadSeleccionada = this.ciudades.find(
+      ciudad => ciudad.name === event.target.value
+    );
+    if (ciudadSeleccionada) {
+      this.mostrarInfo(ciudadSeleccionada);
+    }
+  }
+
+  calcularProgresoPandemia(ciudad: Ciudad): number {
+    const totalEnfermedades = ciudad.diseaseCount.green + ciudad.diseaseCount.red + ciudad.diseaseCount.blue + ciudad.diseaseCount.yellow;
+    return Math.min((totalEnfermedades / 20) * 100, 100);  // Máximo de 20 enfermedades
+  }
 }
-
-

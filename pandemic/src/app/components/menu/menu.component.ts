@@ -5,19 +5,16 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [CommonModule,RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl: './menu.component.html',
-  styleUrl: './menu.component.css'
+  styleUrls: ['./menu.component.css']
 })
 export class MenuComponent {
   informacion: string = '';
+  dropdownVisible: boolean = false;
 
-  cargarPartida() {
-    this.informacion = 'Cargando la partida guardada...';
-  }
-
-  mostrarInformacion() {
-    this.informacion = '';
+  toggleDropdown() {
+    this.dropdownVisible = !this.dropdownVisible;
   }
 
   mostrarRanking() {
@@ -31,9 +28,4 @@ export class MenuComponent {
   mostrarVersion() {
     this.informacion = 'Versión del juego: 1.0';
   }
-  mostrarPerfil() {
-    this.informacion = '';
-  }
-
-  
 }

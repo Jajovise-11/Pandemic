@@ -1,33 +1,45 @@
 <div class="container">
-    
-    <img src="/img/mapa_mundo.png" alt="Mapa del mundo" class="map-image">
-    
-    <h1>PANDEMIC</h1>
-    <div
-      *ngFor="let ciudad of ciudades"
-      class="city-button"
-      [style.left.px]="ciudad.coordinates.x"
-      [style.top.px]="ciudad.coordinates.y"
-      (click)="mostrarInfo(ciudad)"
-    >
-    </div>
-    
+  <!-- Mapa de fondo -->
+  <img src="/img/mapa_mundo.png" alt="Mapa del mundo" class="map-image">
 
-    <div *ngIf="ciudadSeleccionada" class="city-info">
-      <h3>{{ ciudadSeleccionada.name }}</h3>
-      <p><strong>Región:</strong> {{ ciudadSeleccionada.region }}</p>
-      <p><strong>Coordenadas:</strong> ({{ ciudadSeleccionada.coordinates.x }}, {{ ciudadSeleccionada.coordinates.y }})</p>
-      <p><strong>Conexiones:</strong> {{ ciudadSeleccionada.connectedCities.join(', ') }}</p>
-      <p><strong>Centro de investigación:</strong> {{ ciudadSeleccionada.researchCenter ? 'Sí' : 'No' }}</p>
+  <!-- Dropdown de ciudades (con todas las ciudades disponibles) -->
+  <div class="city-dropdown">
+    <label for="citySelect">Selecciona una ciudad:</label>
+    <select id="citySelect" (change)="mostrarInfoDesdeDropdown($event)">
+      <option *ngFor="let ciudad of ciudades" [value]="ciudad.name">{{ ciudad.name }}</option>
+    </select>
+  </div>
+
+  <!-- Representación de las ciudades en el mapa -->
+  <div *ngFor="let ciudad of ciudades" class="city-button"
+       [style.left.px]="ciudad.coordinates.x"
+       [style.top.px]="ciudad.coordinates.y"
+       (click)="mostrarInfo(ciudad)">
+  </div>
+
+  <!-- Información de la ciudad seleccionada -->
+  <div *ngIf="ciudadSeleccionada" class="city-info">
+    <h3>{{ ciudadSeleccionada.name }}</h3>
+    <p><strong>Región:</strong> {{ ciudadSeleccionada.region }}</p>
+    <p><strong>Coordenadas:</strong> ({{ ciudadSeleccionada.coordinates.x }}, {{ ciudadSeleccionada.coordinates.y }})</p>
+    <p><strong>Conexiones:</strong> {{ ciudadSeleccionada.connectedCities.join(', ') }}</p>
+    <p><strong>Centro de investigación:</strong> {{ ciudadSeleccionada.researchCenter ? 'Sí' : 'No' }}</p>
+
+    <div class="disease-info">
       <p><strong>Enfermedades:</strong></p>
       <ul>
-        <li>Verde: {{ ciudadSeleccionada.diseaseCount.green }}</li>
-        <li>Rojo: {{ ciudadSeleccionada.diseaseCount.red }}</li>
-        <li>Azul: {{ ciudadSeleccionada.diseaseCount.blue }}</li>
-        <li>Amarillo: {{ ciudadSeleccionada.diseaseCount.yellow }}</li>
+        <li><span class="green"></span> Verde: {{ ciudadSeleccionada.diseaseCount.green }}</li>
+        <li><span class="red"></span> Rojo: {{ ciudadSeleccionada.diseaseCount.red }}</li>
+        <li><span class="blue"></span> Azul: {{ ciudadSeleccionada.diseaseCount.blue }}</li>
+        <li><span class="yellow"></span> Amarillo: {{ ciudadSeleccionada.diseaseCount.yellow }}</li>
       </ul>
     </div>
-  
-    <button routerLink="../menu" class="btn-back">Menú Principal</button>
+    <div class="pandemic-progress">
+      <p><strong>Progreso de la pandemia:</strong></p>
+      <progress [value]="calcularProgresoPandemia(ciudadSeleccionada)" max="100"></progress>
+    </div>
   </div>
-  
+
+  <!-- Botón para volver al menú principal -->
+  <button routerLink="../menu" class="btn-back">Menú Principal</button>
+</div>
