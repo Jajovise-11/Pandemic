@@ -1,8 +1,14 @@
 <?php
+
+header('Access-Control-Allow-Origin:*');
+header('Access-Control-Allow-Headers:*');
+header('Content-Type: aplication/json');
+
 	//Recoger datos
 
-	$nombre = $_GET['nombre'];
-	$pass = $_GET['pass'];
+	$json = file_get_contents('php//input');
+
+	$usuario = json_encode($json);
 	
 	
 	//Configurar la conexión
@@ -22,10 +28,10 @@
 
 	
 
-	$insertarUsuario = "INSERT INTO usuarios(nombre, password) VALUES ('$nombre', '$pass')";
+	$insertarUsuario = "INSERT INTO usuarios(nombre, password) VALUES ('$usuario->nombre', '$usuario->password')";
 
 	$conn->query($insertarUsuario);
 
-		echo "Se insertó correctamente a: ".$nombre;
+		echo "Se insertó correctamente a: ".$usuario->nombre;
 
 ?>

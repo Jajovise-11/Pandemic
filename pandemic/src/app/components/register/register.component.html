@@ -1,0 +1,24 @@
+<form [formGroup]="miFormulario" (ngSubmit)="enviar()" class="formulario">
+    <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" id="nombre">
+    </mat-form-field>
+    <div *ngIf="miFormulario.get('nombre')?.invalid && miFormulario.get('nombre')?.touched">
+        <small class="mensaje_error" *ngIf="miFormulario.get('nombre')?.errors?.['required']">El nombre es obligatorio</small>
+        <small class="mensaje_error" *ngIf="miFormulario.get('nombre')?.errors?.['minlength']">El nombre debe tener más de </small>
+        <small class="mensaje_error" *ngIf="miFormulario.get('nombre')?.errors?.['maxlength']">El nombre debe tener menos de </small>
+    </div>
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" id="email">
+    </mat-form-field>
+    <div *ngIf="miFormulario.get('email')?.invalid && miFormulario.get('email')?.touched">
+        <small class="mensaje_error" *ngIf="miFormulario.get('email')?.errors?.['required']">El correo es obligatorio</small>
+        <small class="mensaje_error" *ngIf="miFormulario.get('email')?.errors?.['email']">Lo que has escrito no es un correo</small>
+    </div>
+    <mat-form-field>
+        <mat-label>Textarea</mat-label>
+        <textarea matInput formControlName="mensaje" id="mensaje"></textarea>
+    </mat-form-field>
+    <button type="submit">Enviar</button>
+</form>
