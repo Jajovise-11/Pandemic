@@ -4,12 +4,18 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../services/auth.service';
 import { Usuario } from '../../models/usuario.model';
 import {MatInputModule} from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+
+
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [
+    MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     CommonModule,
     ReactiveFormsModule,
 

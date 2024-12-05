@@ -5,8 +5,8 @@
     </mat-form-field>
     <div *ngIf="miFormulario.get('nombre')?.invalid && miFormulario.get('nombre')?.touched">
         <small class="mensaje_error" *ngIf="miFormulario.get('nombre')?.errors?.['required']">El nombre es obligatorio</small>
-        <small class="mensaje_error" *ngIf="miFormulario.get('nombre')?.errors?.['minlength']">El nombre debe tener más de </small>
-        <small class="mensaje_error" *ngIf="miFormulario.get('nombre')?.errors?.['maxlength']">El nombre debe tener menos de </small>
+        <small class="mensaje_error" *ngIf="miFormulario.get('nombre')?.errors?.['minlength']">El nombre debe tener más de 3 caracteres</small>
+        <small class="mensaje_error" *ngIf="miFormulario.get('nombre')?.errors?.['maxlength']">El nombre debe tener menos de 30 caracteres</small>
     </div>
     <mat-form-field>
         <mat-label>Email</mat-label>
