@@ -17,7 +17,7 @@ body {
   align-items: center;
 }
 
-.login-container {
+.container {
   width: 100%;
   max-width: 400px;
   padding: 20px;
@@ -28,14 +28,14 @@ body {
   color: #ffffff;
 }
 
-.form-login h1 {
+.login h1 {
   font-size: 2rem;
   margin-bottom: 20px;
   color: #ffffff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
-.controls {
+.controles {
   width: 100%;
   padding: 12px;
   margin: 15px 0;
@@ -48,12 +48,12 @@ body {
   transition: all 0.3s ease;
 }
 
-.controls:focus {
+.controles:focus {
   outline: none;
   border: 2px solid #017bab;
 }
 
-.buttons {
+.botones {
   width: 100%;
   padding: 12px;
   font-size: 1rem;
@@ -66,11 +66,11 @@ body {
   text-transform: uppercase;
 }
 
-.buttons:hover {
+.botones:hover {
   background-color: #015a87;
 }
 
-.buttons:active {
+.botones:active {
   transform: scale(0.98);
 }
 
@@ -79,47 +79,47 @@ body {
   font-size: 0.9rem;
 }
 
-.form-login a {
+.login a {
   color: #f1fc8f;
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
-.form-login a:hover {
+.login a:hover {
   text-decoration: underline;
 }
 
 
 @media (max-width: 768px) {
-  .login-container {
+  .container {
     padding: 15px;
   }
 
-  .form-login h1 {
+  .login h1 {
     font-size: 1.8rem;
   }
 
-  .controls {
+  .controles {
     font-size: 0.9rem;
   }
 
-  .buttons {
+  .botones {
     font-size: 0.9rem;
     padding: 10px;
   }
 }
 
 @media (max-width: 480px) {
-  .form-login h1 {
+  .login h1 {
     font-size: 1.5rem;
   }
 
-  .controls {
+  .controles {
     font-size: 0.8rem;
     padding: 10px;
   }
 
-  .buttons {
+  .botones {
     font-size: 0.8rem;
     padding: 8px;
   }

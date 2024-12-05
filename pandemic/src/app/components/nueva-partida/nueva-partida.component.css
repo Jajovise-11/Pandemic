@@ -10,7 +10,7 @@
   background-color: #f0f0f0;
 }
 
-.map-image {
+.fondo {
   position: absolute;
   max-width: 100%;
   max-height: 100%;
@@ -18,9 +18,12 @@
   height: auto;
   display: block;
   object-fit: contain;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
 }
 
-.city-dropdown {
+.menu {
   margin-top: 20px;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 10px;
@@ -35,7 +38,7 @@ select {
   border-radius: 5px;
 }
 
-.city-button {
+.boton {
   position: absolute;
   transform: translate(-50%, -50%);
   background-color: rgba(0, 123, 255, 0.8);
@@ -49,7 +52,7 @@ select {
   z-index: 10;
 }
 
-.city-info {
+.informacion {
   position: fixed;
   bottom: 20px;
   left: 50%;
@@ -85,23 +88,23 @@ select {
   margin-right: 10px;
 }
 
-.green {
+.verde {
   background-color: #28a745;
 }
 
-.red {
+.rojo {
   background-color: #dc3545;
 }
 
-.blue {
+.azul {
   background-color: #007bff;
 }
 
-.yellow {
+.amarillo {
   background-color: #ffc107;
 }
 
-.pandemic-progress {
+.progreso-virus {
   margin-top: 20px;
   text-align: center;
 }
@@ -112,7 +115,7 @@ progress {
   margin-top: 10px;
 }
 
-.btn-back {
+.boton-vuelta {
   position: fixed;
   top: 20px;
   left: 20px;
@@ -126,6 +129,6 @@ progress {
   transition: background-color 0.3s ease;
 }
 
-.btn-back:hover {
+.boton-vuelta:hover {
   background-color: #0056b3;
 }

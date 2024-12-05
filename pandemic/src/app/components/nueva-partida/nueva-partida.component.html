@@ -1,41 +1,41 @@
 <div class="container">
 
-  <img src="/img/mapa_mundo.png" alt="Mapa del mundo" class="map-image">
+  <img src="/img/mapa_mundo.png" alt="Mapa del mundo" class="fondo">
 
-  <div class="city-dropdown">
+  <div class="menu">
     <label for="citySelect">Selecciona una ciudad:</label>
     <select id="citySelect" (change)="mostrarInfoDesdeDropdown($event)">
       <option *ngFor="let ciudad of ciudades" [value]="ciudad.name">{{ ciudad.name }}</option>
     </select>
   </div>
 
-  <div *ngFor="let ciudad of ciudades" class="city-button"
+  <div *ngFor="let ciudad of ciudades" class="boton"
        [style.left.px]="ciudad.coordinates.x"
        [style.top.px]="ciudad.coordinates.y"
        (click)="mostrarInfo(ciudad)">
   </div>
 
-  <div *ngIf="ciudadSeleccionada" class="city-info">
+  <div *ngIf="ciudadSeleccionada" class="informacion">
     <h3>{{ ciudadSeleccionada.name }}</h3>
     <p><strong>Región:</strong> {{ ciudadSeleccionada.region }}</p>
     <p><strong>Coordenadas:</strong> ({{ ciudadSeleccionada.coordinates.x }}, {{ ciudadSeleccionada.coordinates.y }})</p>
     <p><strong>Conexiones:</strong> {{ ciudadSeleccionada.connectedCities.join(', ') }}</p>
     <p><strong>Centro de investigación:</strong> {{ ciudadSeleccionada.researchCenter ? 'Sí' : 'No' }}</p>
 
-    <div class="disease-info">
+    <div class="informacion-virus">
       <p><strong>Enfermedades:</strong></p>
       <ul>
-        <li><span class="green"></span> Verde: {{ ciudadSeleccionada.diseaseCount.green }}</li>
-        <li><span class="red"></span> Rojo: {{ ciudadSeleccionada.diseaseCount.red }}</li>
-        <li><span class="blue"></span> Azul: {{ ciudadSeleccionada.diseaseCount.blue }}</li>
-        <li><span class="yellow"></span> Amarillo: {{ ciudadSeleccionada.diseaseCount.yellow }}</li>
+        <li><span class="verde"></span> Verde: {{ ciudadSeleccionada.diseaseCount.green }}</li>
+        <li><span class="rojo"></span> Rojo: {{ ciudadSeleccionada.diseaseCount.red }}</li>
+        <li><span class="azul"></span> Azul: {{ ciudadSeleccionada.diseaseCount.blue }}</li>
+        <li><span class="amarillo"></span> Amarillo: {{ ciudadSeleccionada.diseaseCount.yellow }}</li>
       </ul>
     </div>
-    <div class="pandemic-progress">
+    <div class="progreso-virus">
       <p><strong>Progreso de la pandemia:</strong></p>
       <progress [value]="calcularProgresoPandemia(ciudadSeleccionada)" max="100"></progress>
     </div>
   </div>
 
-  <button routerLink="../menu" class="btn-back">Menú Principal</button>
+  <button routerLink="../menu" class="boton-vuelta">Menú Principal</button>
 </div>
