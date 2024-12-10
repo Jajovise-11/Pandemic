@@ -18,6 +18,9 @@
       <li><button class="" routerLink="/perfil">Perfil</button></li>
     </ul>
 
+    <div class="informacion" *ngIf="informacion">
+      <p>{{ informacion }}</p>
+    </div>
     <button class="" routerLink="">Salir del Juego</button>
   </div>
 </body>
