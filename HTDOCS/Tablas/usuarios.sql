@@ -3,5 +3,5 @@ CREATE TABLE Usuarios(
     username VARCHAR(50) NOT NULL UNIQUE,
     password_hash VARCHAR(25) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
-    fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP
+    fecha_registro DATETIME DEFAULT 
 );   

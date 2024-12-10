@@ -1,6 +1,6 @@
 export interface Ciudad{
-y: any;
-x: any;
+  y: any;
+  x: any;
   name: string;
   region: number;
   coordinates: {
