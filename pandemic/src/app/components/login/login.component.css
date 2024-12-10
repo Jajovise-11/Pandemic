@@ -74,7 +74,7 @@ body {
   transform: scale(0.98);
 }
 
-.form-login p {
+.login p {
   margin-top: 15px;
   font-size: 0.9rem;
 }
