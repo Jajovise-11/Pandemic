@@ -7,6 +7,10 @@
     <select id="citySelect" (change)="mostrarInfoDesdeDropdown($event)">
       <option *ngFor="let ciudad of ciudades" [value]="ciudad.name">{{ ciudad.name }}</option>
     </select>
+    <label for="seleccionVacuna">Selecciona una vacuna</label>
+    <select id="seleccionVacuna" (ngModel)="vacunaSeleccionada">
+      <option *ngFor="let vacuna of vacunas" [value]="vacuna">{{ vacuna }}></option>
+    </select>
   </div>
 
   <div *ngFor="let ciudad of ciudades" class="boton"
@@ -38,4 +42,7 @@
   </div>
 
   <button routerLink="../menu" class="boton-vuelta">Menú Principal</button>
+
+  
+  
 </div>

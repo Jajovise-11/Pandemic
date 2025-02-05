@@ -132,3 +132,14 @@ progress {
 .boton-vuelta:hover {
   background-color: #0056b3;
 }
+
+.informacion-virus {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 10px;
+  background: #f9f9f9;
+  border-radius: 5px;
+}
+
+
+

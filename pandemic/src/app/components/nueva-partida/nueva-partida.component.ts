@@ -40,4 +40,8 @@ export class NuevaPartidaComponent implements OnInit {
     const totalEnfermedades = ciudad.diseaseCount.green + ciudad.diseaseCount.red + ciudad.diseaseCount.blue + ciudad.diseaseCount.yellow;
     return Math.min((totalEnfermedades / 4) * 100, 100);
   }
+
+  vacunas: string[] = ['Verde', 'Rojo', 'Azul', 'Amarillo'];
+  vacunaSeleccionada: string = this.vacunas[0];
+
 }

@@ -26,12 +26,5 @@ header('Content-Type: aplication/json');
 		echo "error al realizar la conexión";
 	}
 
-	
-
-	$insertarUsuario = "INSERT INTO usuarios(nombre, password) VALUES ('$usuario->nombre', '$usuario->password')";
-
-	$conn->query($insertarUsuario);
-
-		echo "Se insertó correctamente a: ".$usuario->nombre;
 
 ?>
