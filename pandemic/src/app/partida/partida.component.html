@@ -1,1 +1,60 @@
-<p>partida works!</p>
+<div class="partida-container">
+  <h1 class="text-3xl font-bold mb-4">Partida Actual</h1>
+
+  <!-- Información general -->
+  <div class="info-section bg-gray-100 p-4 rounded-lg mb-6">
+    <p><strong>Número de ronda:</strong> {{ rondaActual }}</p>
+    <p><strong>Número de brotes:</strong> {{ numeroDeBrotes }}</p>
+    <p><strong>Acciones restantes:</strong> {{ accionesRestantes }}</p>
+  </div>
+
+  <!-- Lista de ciudades -->
+  <h2 class="text-2xl font-semibold mt-4 mb-2">Ciudades</h2>
+  <div class="grid grid-cols-2 gap-4">
+    <div *ngFor="let ciudad of ciudades" class="ciudad-card bg-blue-100 p-4 rounded-lg">
+      <h3 class="font-bold">{{ ciudad.nombre }}</h3>
+      <p><strong>Coordenadas:</strong> ({{ ciudad.coordenadas.x }}, {{ ciudad.coordenadas.y }})</p>
+      <p><strong>Enfermedad principal:</strong> {{ ciudad.enfermedadPrincipal }}</p>
+      <div *ngIf="ciudad.nivelesDeInfeccion.size > 0">
+        <p class="font-semibold">Niveles de infección:</p>
+        <ul>
+          <li *ngFor="let [enfermedad, nivel] of ciudad.nivelesDeInfeccion | keyvalue">
+            {{ enfermedad }}: {{ nivel }}
+          </li>
+        </ul>
+      </div>
+      <button class="bg-green-500 text-white px-4 py-2 rounded mt-2" (click)="curarEnfermedad(ciudad)">Curar Enfermedad</button>
+    </div>
+  </div>
+
+  <!-- Lista de vacunas -->
+  <h2 class="text-2xl font-semibold mt-8 mb-2">Vacunas</h2>
+  <div class="grid grid-cols-2 gap-4">
+    <div *ngFor="let vacuna of vacunas" class="vacuna-card bg-green-100 p-4 rounded-lg">
+      <h3 class="font-bold">{{ vacuna.nombre }}</h3>
+      <p><strong>Color:</strong> {{ vacuna.color }}</p>
+      <p><strong>Desarrollo:</strong> {{ vacuna.porcentajeDesarrollo }}%</p>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded mt-2" (click)="investigarVacuna(vacuna)">Investigar Vacuna</button>
+    </div>
+  </div>
+
+  <!-- Botón para finalizar la ronda -->
+  <div class="mt-8">
+    <button class="bg-red-500 text-white px-6 py-3 rounded-lg" (click)="finalizarRonda()">Finalizar Ronda</button>
+  </div>
+
+  <!-- Mensajes de la ronda -->
+  <div class="mt-4">
+    <h3 class="text-xl font-bold">Mensajes de la ronda:</h3>
+    <ul>
+      <li *ngFor="let mensaje of mensajesRonda" class="bg-gray-200 p-2 rounded my-1">
+        {{ mensaje }}
+      </li>
+    </ul>
+  </div>
+  <img src="/img/mapa_mundo.png" alt="Mapa del mundo" class="fondo">
+  <button routerLink="../nueva" class="boton-vuelta">Menú Principal</button>
+    
+</div>
+
+  

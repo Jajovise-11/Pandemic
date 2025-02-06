@@ -2,46 +2,10 @@
 
   <img src="/img/mapa_mundo.png" alt="Mapa del mundo" class="fondo">
 
-  <div class="menu">
-    <label for="citySelect">Selecciona una ciudad:</label>
-    <select id="citySelect" (change)="mostrarInfoDesdeDropdown($event)">
-      <option *ngFor="let ciudad of ciudades" [value]="ciudad.name">{{ ciudad.name }}</option>
-    </select>
-    <label for="seleccionVacuna">Selecciona una vacuna</label>
-    <select id="seleccionVacuna" (ngModel)="vacunaSeleccionada">
-      <option *ngFor="let vacuna of vacunas" [value]="vacuna">{{ vacuna }}></option>
-    </select>
-  </div>
-
-  <div *ngFor="let ciudad of ciudades" class="boton"
-       [style.left.px]="ciudad.coordinates.x"
-       [style.top.px]="ciudad.coordinates.y"
-       (click)="mostrarInfo(ciudad)">
-  </div>
-
-  <div *ngIf="ciudadSeleccionada" class="informacion">
-    <h3>{{ ciudadSeleccionada.name }}</h3>
-    <p><strong>Región:</strong> {{ ciudadSeleccionada.region }}</p>
-    <p><strong>Coordenadas:</strong> ({{ ciudadSeleccionada.coordinates.x }}, {{ ciudadSeleccionada.coordinates.y }})</p>
-    <p><strong>Conexiones:</strong> {{ ciudadSeleccionada.connectedCities.join(', ') }}</p>
-    <p><strong>Centro de investigación:</strong> {{ ciudadSeleccionada.researchCenter ? 'Sí' : 'No' }}</p>
-
-    <div class="informacion-virus">
-      <p><strong>Enfermedades:</strong></p>
-      <ul>
-        <li><span class="verde"></span> Verde: {{ ciudadSeleccionada.diseaseCount.green }}</li>
-        <li><span class="rojo"></span> Rojo: {{ ciudadSeleccionada.diseaseCount.red }}</li>
-        <li><span class="azul"></span> Azul: {{ ciudadSeleccionada.diseaseCount.blue }}</li>
-        <li><span class="amarillo"></span> Amarillo: {{ ciudadSeleccionada.diseaseCount.yellow }}</li>
-      </ul>
-    </div>
-    <div class="progreso-virus">
-      <p><strong>Progreso de la pandemia:</strong></p>
-      <progress [value]="calcularProgresoPandemia(ciudadSeleccionada)" max="100"></progress>
-    </div>
-  </div>
 
   <button routerLink="../menu" class="boton-vuelta">Menú Principal</button>
+
+  <button routerLink="/partida" class="boton-partida">Iniciar</button>
 
   
   

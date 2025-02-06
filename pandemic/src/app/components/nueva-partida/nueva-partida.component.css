@@ -129,6 +129,20 @@ progress {
   transition: background-color 0.3s ease;
 }
 
+.boton-partida {
+  position: fixed;
+  top: 80px;
+  left: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 20;
+  transition: background-color 0.3s ease;
+}
+
 .boton-vuelta:hover {
   background-color: #0056b3;
 }

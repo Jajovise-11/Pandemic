@@ -1,0 +1,13 @@
+<div class="ciudad-card">
+    <h2>{{ ciudad.nombre }}</h2>
+    <p>Coordenadas: ({{ ciudad.coordenadas.x }}, {{ ciudad.coordenadas.y }})</p>
+    <p>Enfermedad Principal: {{ ciudad.enfermedadPrincipal }}</p>
+    
+    <h3>Niveles de Infección:</h3>
+    <ul>
+      <li *ngFor="let infeccion of getNivelesDeInfeccion()">
+        {{ infeccion[0] }}: {{ infeccion[1] }}
+      </li>
+    </ul>
+  </div>
+  

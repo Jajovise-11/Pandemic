@@ -6,6 +6,7 @@ import { InformacionComponent } from './informacion/informacion.component';
 import { PerfilUsuarioComponent } from '../perfil/perfil-usuario/perfil-usuario.component';
 import { CargarPartidaComponent } from './cargar-partida/cargar-partida.component';
 import { NuevaPartidaComponent } from './nueva-partida/nueva-partida.component';
+import { PartidaComponent } from '../partida/partida.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
 { path: 'informacion', component: InformacionComponent},
 { path: 'perfil', component: PerfilUsuarioComponent},
 { path: 'cargar', component: CargarPartidaComponent},
-{ path: 'nueva', component: NuevaPartidaComponent}
+{ path: 'nueva', component: NuevaPartidaComponent},
+{ path: 'partida', component: PartidaComponent},
 ];
 
 
