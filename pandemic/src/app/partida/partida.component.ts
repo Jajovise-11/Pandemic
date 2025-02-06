@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './nueva-partida.component.html',
   styleUrls: ['./nueva-partida.component.css']
 })
-export class NuevaPartidaComponent implements OnInit {
+export class PartidaComponent implements OnInit {
   ciudades: Ciudades[] = [];
   ciudadSeleccionada: Ciudades | null = null;
 
@@ -45,3 +45,4 @@ export class NuevaPartidaComponent implements OnInit {
   vacunaSeleccionada: string = this.vacunas[0];
 
 }
+

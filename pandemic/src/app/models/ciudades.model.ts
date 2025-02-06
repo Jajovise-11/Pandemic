@@ -1,4 +1,4 @@
-export interface Ciudad{
+export interface Ciudades{
   y: any;
   x: any;
   name: string;
