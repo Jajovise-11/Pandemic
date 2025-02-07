@@ -4,6 +4,8 @@ export class Ciudad {
     enfermedadPrincipal: string;
     nivelesDeInfeccion: Map<string, number> = new Map();
     ciudadesColindantes: Ciudad[] = [];
+    x: any;
+    y: any;
   
     constructor(nombre: string, x: number, y: number, enfermedadPrincipal: string) {
       this.nombre = nombre;

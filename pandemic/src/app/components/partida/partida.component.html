@@ -13,16 +13,8 @@
   <div class="grid grid-cols-2 gap-4">
     <div *ngFor="let ciudad of ciudades" class="ciudad-card bg-blue-100 p-4 rounded-lg">
       <h3 class="font-bold">{{ ciudad.nombre }}</h3>
-      <p><strong>Coordenadas:</strong> ({{ ciudad.coordenadas.x }}, {{ ciudad.coordenadas.y }})</p>
+      <p><strong>Coordenadas:</strong> ({{ ciudad.x }}, {{ ciudad.y }})</p>
       <p><strong>Enfermedad principal:</strong> {{ ciudad.enfermedadPrincipal }}</p>
-      <div *ngIf="ciudad.nivelesDeInfeccion.size > 0">
-        <p class="font-semibold">Niveles de infección:</p>
-        <ul>
-          <li *ngFor="let [enfermedad, nivel] of ciudad.nivelesDeInfeccion | keyvalue">
-            {{ enfermedad }}: {{ nivel }}
-          </li>
-        </ul>
-      </div>
       <button class="bg-green-500 text-white px-4 py-2 rounded mt-2" (click)="curarEnfermedad(ciudad)">Curar Enfermedad</button>
     </div>
   </div>
@@ -33,7 +25,6 @@
     <div *ngFor="let vacuna of vacunas" class="vacuna-card bg-green-100 p-4 rounded-lg">
       <h3 class="font-bold">{{ vacuna.nombre }}</h3>
       <p><strong>Color:</strong> {{ vacuna.color }}</p>
-      <p><strong>Desarrollo:</strong> {{ vacuna.porcentajeDesarrollo }}%</p>
       <button class="bg-blue-500 text-white px-4 py-2 rounded mt-2" (click)="investigarVacuna(vacuna)">Investigar Vacuna</button>
     </div>
   </div>
@@ -52,9 +43,7 @@
       </li>
     </ul>
   </div>
+
   <img src="/img/mapa_mundo.png" alt="Mapa del mundo" class="fondo">
   <button routerLink="../nueva" class="boton-vuelta">Menú Principal</button>
-    
 </div>
-
-  

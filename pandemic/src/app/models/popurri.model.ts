@@ -2,6 +2,7 @@ import { Ciudad } from "./ciudad.model";
 import { Vacuna } from "./vacuna.model";
 
 export class Popurri {
+    mensajesRonda: string[] = [];
     verificarVictoria() {
       throw new Error('Method not implemented.');
     }

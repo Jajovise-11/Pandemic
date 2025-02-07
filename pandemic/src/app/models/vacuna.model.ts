@@ -1,4 +1,7 @@
 export class Vacuna {
+    desarrollar(arg0: number) {
+      throw new Error('Method not implemented.');
+    }
     nombre: string;
     color: string;
     porcentajeDesarrollo: number;

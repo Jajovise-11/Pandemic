@@ -6,7 +6,7 @@ import { InformacionComponent } from './informacion/informacion.component';
 import { PerfilUsuarioComponent } from '../perfil/perfil-usuario/perfil-usuario.component';
 import { CargarPartidaComponent } from './cargar-partida/cargar-partida.component';
 import { NuevaPartidaComponent } from './nueva-partida/nueva-partida.component';
-import { PartidaComponent } from '../partida/partida.component';
+import { PartidaComponent } from './partida/partida.component';
 
 
 const routes: Routes = [
