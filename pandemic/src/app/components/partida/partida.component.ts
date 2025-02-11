@@ -1,79 +1,86 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { Ciudad } from '../../models/ciudad.model';
 import { Vacuna } from '../../models/vacuna.model';
-import { Popurri } from '../../models/popurri.model';
+import { CargarJsonService } from '../../services/cargar-json.service';
 
 @Component({
   selector: 'app-partida',
+  standalone: true,
+  imports: [CommonModule, RouterLink],
   templateUrl: './partida.component.html',
   styleUrls: ['./partida.component.css']
 })
 export class PartidaComponent implements OnInit {
   ciudades: Ciudad[] = [];
+  ciudadSeleccionada: Ciudad | null = null;
   vacunas: Vacuna[] = [];
-  rondaActual: number = 0;
+  vacunaSeleccionada: Vacuna | null = null;
+  rondas: number = 0;
   numeroDeBrotes: number = 0;
-  accionesRestantes: number = 4;
   mensajesRonda: string[] = [];
+  rondaActual: number = 0;
+  accionesRestantes: number = 4;
 
-  partida: Popurri;
-
-  constructor() {
-    this.partida = new Popurri(5);
-  }
+  constructor(private cargarJson: CargarJsonService) {}
 
   ngOnInit(): void {
-    this.inicializarPartida();
-  }
-
-  inicializarPartida(): void {
-    const ciudadesData = [
-      { nombre: 'Ciudad A', x: 0, y: 0, enfermedadPrincipal: 'Virus A' },
-      { nombre: 'Ciudad B', x: 1, y: 1, enfermedadPrincipal: 'Virus B' }
+    // Cargar las ciudades desde el servicio
+    this.cargarJson.getCiudades().subscribe(response => {
+      this.ciudades = response;
+    });
+    
+    // Cargar las vacunas manualmente o desde un servicio si está disponible
+    this.vacunas = [
+      { nombre: 'Vacuna Verde', color: 'verde' },
+      { nombre: 'Vacuna Roja', color: 'rojo' },
+      { nombre: 'Vacuna Azul', color: 'azul' },
+      { nombre: 'Vacuna Amarilla', color: 'amarillo' }
     ];
-    const vacunasData = [
-      { nombre: 'Vacuna A', color: 'Rojo' },
-      { nombre: 'Vacuna B', color: 'Azul' }
-    ];
-
-    this.partida.inicializarCiudades(ciudadesData);
-    this.partida.inicializarVacunas(vacunasData);
-
-    this.ciudades = this.partida.ciudades;
-    this.vacunas = this.partida.vacunas;
   }
 
-  finalizarRonda(): void {
-    this.partida.rondas++;
-    this.rondaActual = this.partida.rondas;
-    this.numeroDeBrotes = this.partida.numeroDeBrotes;
-    this.mensajesRonda.push(`Ronda ${this.rondaActual} finalizada.`);
-    this.mostrarMensajesRonda();
+  mostrarInfo(ciudad: Ciudad): void {
+    this.ciudadSeleccionada = ciudad;
   }
 
-  curarEnfermedad(ciudad: Ciudad): void {
-    if (this.accionesRestantes > 0) {
-      const enfermedad = ciudad.enfermedadPrincipal;
-      this.partida.curarCiudad(ciudad, enfermedad);
-      this.accionesRestantes--;
-      this.mensajesRonda.push(`Se ha curado ${enfermedad} en la ciudad de ${ciudad.nombre}`);
+  mostrarInfoDesdeDropdown(event: any): void {
+    const ciudadSeleccionada = this.ciudades.find(
+      ciudad => ciudad.nombre === event.target.value
+    );
+    if (ciudadSeleccionada) {
+      this.mostrarInfo(ciudadSeleccionada);
+    }
+  }
+
+  seleccionarVacuna(event: any): void {
+    this.vacunaSeleccionada = this.vacunas.find(
+      vacuna => vacuna.nombre === event.target.value
+    ) || null;
+  }
+
+  curarCiudad(ciudad: Ciudad): void {
+    if (ciudad.enfermedadPrincipal) {
+      this.mensajesRonda.push(`Enfermedad ${ciudad.enfermedadPrincipal} curada en ${ciudad.nombre}.`);
+      ciudad.enfermedadPrincipal = ''; // Marca como curada
     } else {
-      this.mensajesRonda.push('No quedan acciones disponibles para curar enfermedades.');
+      this.mensajesRonda.push(`No hay enfermedad que curar en ${ciudad.nombre}.`);
     }
   }
 
   investigarVacuna(vacuna: Vacuna): void {
-    if (this.accionesRestantes >= 4) {
-      this.partida.investigarVacuna(vacuna, 20);
-      this.accionesRestantes -= 4;
-      this.mensajesRonda.push(`Se ha investigado la vacuna ${vacuna.nombre}.`);
-    } else {
-      this.mensajesRonda.push('No hay suficientes acciones para investigar una vacuna.');
+    if (vacuna) {
+      this.mensajesRonda.push(`Investigación para la vacuna ${vacuna.nombre} iniciada.`);
     }
   }
 
-  mostrarMensajesRonda(): void {
-    alert(this.mensajesRonda.join('\n'));
-    this.mensajesRonda = [];
+  finalizarRonda(): void {
+    this.rondas++;
+    this.mensajesRonda.push(`Ronda ${this.rondas} finalizada.`);
+  }
+
+  calcularProgresoPandemia(ciudad: Ciudad): number {
+    // Ejemplo simple para el progreso
+    return Math.min(100, (ciudad.diseaseCount.green + ciudad.diseaseCount.red + ciudad.diseaseCount.blue + ciudad.diseaseCount.yellow) * 10);
   }
 }
