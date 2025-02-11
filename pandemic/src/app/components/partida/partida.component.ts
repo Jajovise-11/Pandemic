@@ -83,4 +83,18 @@ export class PartidaComponent implements OnInit {
     // Ejemplo simple para el progreso
     return Math.min(100, (ciudad.diseaseCount.green + ciudad.diseaseCount.red + ciudad.diseaseCount.blue + ciudad.diseaseCount.yellow) * 10);
   }
+
+
+  
+  getCityCoordinates(cityName: string): { x: number, y: number } | null {
+    const city = this.ciudades.find(ciudad => ciudad.name === cityName);
+    return city ? city.coordinates : null;
+  }
+
+  isConnectionRendered(source: string, target: string): boolean {
+    return this.renderedConnections.has(`${source}-${target}`) ||
+      this.renderedConnections.has(`${target}-${source}`);
+  }
+
+  renderedConnections: Set<string> = new Set();
 }
