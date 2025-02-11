@@ -1,22 +1,22 @@
-export class Ciudad {
-    nombre: string;
-    coordenadas: { x: number; y: number };
+/*export class Ciudad {
+    name: string;
+    coordinates: { x: number; y: number };
     enfermedadPrincipal: string;
-    nivelesDeInfeccion: Map<string, number> = new Map();
+    diseaseCount: Map<string, number> = new Map();
     ciudadesColindantes: Ciudad[] = [];
     x: any;
     y: any;
   
     constructor(nombre: string, x: number, y: number, enfermedadPrincipal: string) {
-      this.nombre = nombre;
-      this.coordenadas = { x, y };
+      this.name = nombre;
+      this.coordinates = { x, y };
       this.enfermedadPrincipal = enfermedadPrincipal;
     }
   
     infectar(enfermedad: string) {
-      const nivelActual = this.nivelesDeInfeccion.get(enfermedad) || 0;
+      const nivelActual = this.diseaseCount.get(enfermedad) || 0;
       if (nivelActual < 3) {
-        this.nivelesDeInfeccion.set(enfermedad, nivelActual + 1);
+        this.diseaseCount.set(enfermedad, nivelActual + 1);
       } else {
         this.propagacionColindantes(enfermedad);
       }
@@ -26,4 +26,4 @@ export class Ciudad {
       this.ciudadesColindantes.forEach(ciudad => ciudad.infectar(enfermedad));
     }
   }
-  
+  */

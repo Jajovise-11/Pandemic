@@ -43,7 +43,7 @@ export class PopurriComponent implements OnInit {
       const enfermedad = ciudad.enfermedadPrincipal;
       ciudad.enfermedadPrincipal = '';
       this.accionesRestantes--;
-      this.mensajesRonda.push(`Se ha curado ${enfermedad} en la ciudad de ${ciudad.nombre}`);
+      this.mensajesRonda.push(`Se ha curado ${enfermedad} en la ciudad de ${ciudad.name}`);
     } else {
       this.mensajesRonda.push('No quedan acciones disponibles para curar enfermedades.');
     }
