@@ -13,6 +13,7 @@ import { Ciudad } from '../../models/ciudad.model';
   styleUrls: ['./partida.component.css']
 })
 export class PartidaComponent implements OnInit {
+  
   ciudades: Ciudades[] = [];
   ciudadSeleccionada: Ciudad | null = null;
   vacunas: Vacuna[] = [];
@@ -32,6 +33,13 @@ export class PartidaComponent implements OnInit {
     
     
   }
+
+  seleccionarCiudad(ciudad: any) {
+    alert(`Ciudad: ${ciudad.name}\nEnfermedad: ${ciudad.enfermedadPrincipal || 'Sin enfermedad'}`);
+  }
+  
+  
+  
 
   inicializarVacunas() {
     this.vacunas = [
@@ -94,14 +102,16 @@ export class PartidaComponent implements OnInit {
          (ciudades.diseaseCount.get("blue") || 0) +
          (ciudades.diseaseCount.get("yellow") || 0)) * 10
     );
-}
+  }
 
+  getCityCoordinates(ciudadNombre: string) {
+    const ciudad = this.ciudades.find(c => c.name === ciudadNombre);
+    if (!ciudad) return null;
 
-
-  
-  getCityCoordinates(cityName: string): { x: number, y: number } | null {
-    const city = this.ciudades.find(ciudad => ciudad.name === cityName);
-    return city ? city.coordinates : null;
+    return {
+      x: Math.min(Math.max(ciudad.coordinates.x, 10), 990), // Ajusta los límites
+      y: Math.min(Math.max(ciudad.coordinates.y, 10), 590)
+    };
   }
 
   isConnectionRendered(source: string, target: string): boolean {

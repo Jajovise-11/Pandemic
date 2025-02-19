@@ -3,18 +3,29 @@
 
   <div class="mapaCiudades">
     <svg class="city-lines" xmlns="http://www.w3.org/2000/svg">
-      <ng-container *ngFor="let ciudad of ciudades; let i = index">
+      <ng-container *ngFor="let ciudad of ciudades">
         <ng-container *ngFor="let destino of ciudad.connectedCities || []">
-          <line *ngIf="!isConnectionRendered(ciudad.name, destino)" [attr.x1]="ciudad.coordinates.x"
-            [attr.y1]="ciudad.coordinates.y" [attr.x2]="getCityCoordinates(destino)?.x"
-            [attr.y2]="getCityCoordinates(destino)?.y" stroke="blue" stroke-width="2" />
+          <line *ngIf="!isConnectionRendered(ciudad.name, destino)" 
+            [attr.x1]="ciudad.coordinates.x"
+            [attr.y1]="ciudad.coordinates.y"
+            [attr.x2]="getCityCoordinates(destino)?.x"
+            [attr.y2]="getCityCoordinates(destino)?.y"
+            stroke="blue" stroke-width="2" />
         </ng-container>
       </ng-container>
-
     </svg>
+  
+    <!-- Botones de ciudades -->
+    <div *ngFor="let ciudad of ciudades" 
+      class="ciudad-boton"
+      [style.left.px]="ciudad.coordinates.x"
+      [style.top.px]="ciudad.coordinates.y"
+      (click)="seleccionarCiudad(ciudad)">
+      {{ ciudad.name }}
+    </div>
   </div>
+  
 
-  <!-- Información general -->
   <div class="info-section bg-gray-100 p-4 rounded-lg mb-6">
     <p><strong>Número de ronda:</strong> {{ rondaActual }}</p>
     <p><strong>Número de brotes:</strong> {{ numeroDeBrotes }}</p>
@@ -45,12 +56,10 @@
 </div>
 
 
-  <!-- Botón para finalizar la ronda -->
   <div class="mt-8">
     <button class="bg-red-500 text-white px-6 py-3 rounded-lg" (click)="finalizarRonda()">Finalizar Ronda</button>
   </div>
 
-  <!-- Mensajes de la ronda -->
   <div class="mt-4">
     <h3 class="text-xl font-bold">Mensajes de la ronda:</h3>
     <ul>
