@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Vacuna } from '../../models/vacuna.model';
 import { CargarJsonService } from '../../services/cargar-json.service';
 import { Ciudades } from '../../models/ciudades.model';
+import { Ciudad } from '../../models/ciudad.model';
 @Component({
   selector: 'app-partida',
   standalone: true,
@@ -42,8 +43,9 @@ export class PartidaComponent implements OnInit {
   }
 
   mostrarInfo(ciudad: Ciudades): void {
-    this.ciudadSeleccionada = ciudad;
-  }
+    this.ciudadSeleccionada = new Ciudad(ciudad.name, ciudad.x, ciudad.y, ciudad.enfermedadPrincipal);
+}
+
 
   mostrarInfoDesdeDropdown(event: any): void {
     const ciudadSeleccionada = this.ciudades.find(
@@ -86,8 +88,14 @@ export class PartidaComponent implements OnInit {
   }
 
   calcularProgresoPandemia(ciudades: Ciudad): number {
-    return Math.min(100, (ciudades.diseaseCount.green + ciudades.diseaseCount.rojo + ciudades.diseaseCount.blue + ciudades.diseaseCount.yellow) * 10);
-  }
+    return Math.min(100, 
+        ((ciudades.diseaseCount.get("green") || 0) +
+         (ciudades.diseaseCount.get("red") || 0) +
+         (ciudades.diseaseCount.get("blue") || 0) +
+         (ciudades.diseaseCount.get("yellow") || 0)) * 10
+    );
+}
+
 
 
   

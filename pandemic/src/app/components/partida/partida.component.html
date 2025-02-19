@@ -4,7 +4,7 @@
   <div class="mapaCiudades">
     <svg class="city-lines" xmlns="http://www.w3.org/2000/svg">
       <ng-container *ngFor="let ciudad of ciudades; let i = index">
-        <ng-container *ngFor="let destino of ciudad.connectedCities">
+        <ng-container *ngFor="let destino of ciudad.connectedCities || []">
           <line *ngIf="!isConnectionRendered(ciudad.name, destino)" [attr.x1]="ciudad.coordinates.x"
             [attr.y1]="ciudad.coordinates.y" [attr.x2]="getCityCoordinates(destino)?.x"
             [attr.y2]="getCityCoordinates(destino)?.y" stroke="blue" stroke-width="2" />

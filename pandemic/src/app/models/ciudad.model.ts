@@ -1,4 +1,4 @@
-/*export class Ciudad {
+export class Ciudad {
     name: string;
     coordinates: { x: number; y: number };
     enfermedadPrincipal: string;
@@ -6,6 +6,7 @@
     ciudadesColindantes: Ciudad[] = [];
     x: any;
     y: any;
+  nivelesDeInfeccion: any;
   
     constructor(nombre: string, x: number, y: number, enfermedadPrincipal: string) {
       this.name = nombre;
@@ -26,4 +27,4 @@
       this.ciudadesColindantes.forEach(ciudad => ciudad.infectar(enfermedad));
     }
   }
-  */
+  
