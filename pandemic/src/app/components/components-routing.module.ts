@@ -17,6 +17,7 @@ const routes: Routes = [
 { path: 'perfil', component: PerfilUsuarioComponent},
 { path: 'cargar', component: CargarPartidaComponent},
 { path: 'nueva', component: NuevaPartidaComponent}
+
 ];
 
 
