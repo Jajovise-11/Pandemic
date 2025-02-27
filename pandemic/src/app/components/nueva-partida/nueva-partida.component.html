@@ -1,7 +1,7 @@
 <div class="container">
-
   <img src="/img/mapa_mundo.png" alt="Mapa del mundo" class="fondo">
 
+  <!-- Menú de selección de ciudades -->
   <div class="menu">
     <label for="citySelect">Selecciona una ciudad:</label>
     <select id="citySelect" (change)="mostrarInfoDesdeDropdown($event)">
@@ -9,33 +9,72 @@
     </select>
   </div>
 
-  <div *ngFor="let ciudad of ciudades" class="boton"
+  <!-- Conexiones entre ciudades con líneas -->
+  <svg class="conexiones">
+    <ng-container *ngFor="let ciudad of ciudades; let i = index">
+      <line *ngFor="let ady of ciudad.connectedCities"
+            [attr.x1]="ciudad.coordinates.x"
+            [attr.y1]="ciudad.coordinates.y"
+            [attr.x2]="getCoordinates(ady).x"
+            [attr.y2]="getCoordinates(ady).y"
+            stroke="white" stroke-width="2"/>
+    </ng-container>
+  </svg>
+
+  <!-- Botones de ciudades -->
+  <div *ngFor="let ciudad of ciudades" class="boton-ciudad"
        [style.left.px]="ciudad.coordinates.x"
        [style.top.px]="ciudad.coordinates.y"
        (click)="mostrarInfo(ciudad)">
   </div>
 
+  <!-- Información de la ciudad seleccionada -->
   <div *ngIf="ciudadSeleccionada" class="informacion">
     <h3>{{ ciudadSeleccionada.name }}</h3>
     <p><strong>Región:</strong> {{ ciudadSeleccionada.region }}</p>
-    <p><strong>Coordenadas:</strong> ({{ ciudadSeleccionada.coordinates.x }}, {{ ciudadSeleccionada.coordinates.y }})</p>
     <p><strong>Conexiones:</strong> {{ ciudadSeleccionada.connectedCities.join(', ') }}</p>
-    <p><strong>Centro de investigación:</strong> {{ ciudadSeleccionada.researchCenter ? 'Sí' : 'No' }}</p>
 
     <div class="informacion-virus">
-      <p><strong>Enfermedades:</strong></p>
+      <p><strong>Infección:</strong></p>
       <ul>
-        <li><span class="verde"></span> Verde: {{ ciudadSeleccionada.diseaseCount.green }}</li>
-        <li><span class="rojo"></span> Rojo: {{ ciudadSeleccionada.diseaseCount.red }}</li>
-        <li><span class="azul"></span> Azul: {{ ciudadSeleccionada.diseaseCount.blue }}</li>
-        <li><span class="amarillo"></span> Amarillo: {{ ciudadSeleccionada.diseaseCount.yellow }}</li>
+        <li class="verde">Verde: {{ ciudadSeleccionada.diseaseCount.green }}</li>
+        <li class="rojo">Rojo: {{ ciudadSeleccionada.diseaseCount.red }}</li>
+        <li class="azul">Azul: {{ ciudadSeleccionada.diseaseCount.blue }}</li>
+        <li class="amarillo">Amarillo: {{ ciudadSeleccionada.diseaseCount.yellow }}</li>
       </ul>
     </div>
-    <div class="progreso-virus">
-      <p><strong>Progreso de la pandemia:</strong></p>
-      <progress [value]="calcularProgresoPandemia(ciudadSeleccionada)" max="100"></progress>
-    </div>
+  </div>
+
+  <!-- Tabla de progreso de la infección -->
+  <div class="tabla-infeccion">
+    <h3>Estado de Infección</h3>
+    <table>
+      <tr>
+        <th>Ciudad</th>
+        <th>Verde</th>
+        <th>Rojo</th>
+        <th>Azul</th>
+        <th>Amarillo</th>
+      </tr>
+      <tr *ngFor="let ciudad of ciudades">
+        <td>{{ ciudad.name }}</td>
+        <td>{{ ciudad.diseaseCount.green }}</td>
+        <td>{{ ciudad.diseaseCount.red }}</td>
+        <td>{{ ciudad.diseaseCount.blue }}</td>
+        <td>{{ ciudad.diseaseCount.yellow }}</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Controles de juego -->
+  <div class="controles">
+    <button (click)="avanzarTurno()">Saltar Turno</button>
+    <button (click)="desarrollarVacuna('green')">Vacuna Verde</button>
+    <button (click)="desarrollarVacuna('red')">Vacuna Roja</button>
+    <button (click)="desarrollarVacuna('blue')">Vacuna Azul</button>
+    <button (click)="desarrollarVacuna('yellow')">Vacuna Amarilla</button>
   </div>
 
   <button routerLink="../menu" class="boton-vuelta">Menú Principal</button>
 </div>
+

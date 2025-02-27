@@ -16,4 +16,5 @@ export interface Ciudad{
     blue: number;
     yellow: number;
   };
+  adyacentes: string[];
 }
