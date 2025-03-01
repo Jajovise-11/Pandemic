@@ -21,6 +21,7 @@ export class NuevaPartidaComponent implements OnInit {
   ciudadSeleccionada: Ciudad | null = null;
   vacunasEnDesarrollo: Vacuna[] = [];
   turnos: number = 0;
+  juegoTerminado: boolean = false;
 
   constructor(private cargarJson: CargarJsonService) {}
 
@@ -49,25 +50,32 @@ export class NuevaPartidaComponent implements OnInit {
   }
 
   avanzarTurno(): void {
+    if (this.juegoTerminado) return;
+
     this.turnos++;
     this.evolucionarVirus();
     this.actualizarVacunas();
+    this.verificarDerrota();
   }
 
   evolucionarVirus(): void {
     this.ciudades.forEach(ciudad => {
       for (const color of ['green', 'red', 'blue', 'yellow'] as const) {
-        if (ciudad.diseaseCount[color] > 0) {
-          ciudad.diseaseCount[color]++;
-          
-          if (ciudad.diseaseCount[color] >= 3) {
-            ciudad.adyacentes.forEach(nombreCiudad => {
-              const ciudadAdyacente = this.ciudades.find(c => c.name === nombreCiudad);
-              if (ciudadAdyacente) {
-                ciudadAdyacente.diseaseCount[color]++;
-              }
-            });
-          }
+        if (Math.random() < 0.5) {
+          ciudad.diseaseCount[color] = Math.min(4, ciudad.diseaseCount[color] + 1);
+        }
+      }
+    });
+
+    this.ciudades.forEach(ciudad => {
+      for (const color of ['green', 'red', 'blue', 'yellow'] as const) {
+        if (ciudad.diseaseCount[color] === 4) {
+          ciudad.adyacentes.forEach(nombreCiudad => {
+            const ciudadAdyacente = this.ciudades.find(c => c.name === nombreCiudad);
+            if (ciudadAdyacente) {
+              ciudadAdyacente.diseaseCount[color] = Math.min(4, ciudadAdyacente.diseaseCount[color] + 1);
+            }
+          });
         }
       }
     });
@@ -99,6 +107,20 @@ export class NuevaPartidaComponent implements OnInit {
         ciudad.diseaseCount[color] = Math.max(0, ciudad.diseaseCount[color] - 2);
       }
     });
+  }
+
+  verificarDerrota(): void {
+    const juegoPerdido = this.ciudades.every(ciudad => 
+      ciudad.diseaseCount.green === 4 &&
+      ciudad.diseaseCount.red === 4 &&
+      ciudad.diseaseCount.blue === 4 &&
+      ciudad.diseaseCount.yellow === 4
+    );
+    
+    if (juegoPerdido) {
+      this.juegoTerminado = true;
+      alert("¡Has perdido! Todas las ciudades están completamente infectadas.");
+    }
   }
 
   getCoordinates(cityName: string): { x: number, y: number } {

@@ -701,8 +701,7 @@
       },
       "connectedCities": [
         "Karachi",
-        "Nueva Delhi",
-        "Madras"
+        "Nueva Delhi"
       ],
       "characters": [],
       "researchCenter": false,
@@ -724,7 +723,6 @@
         "Teheran",
         "Karachi",
         "Bombay",
-        "Madras",
         "Calcuta"
       ],
       "characters": [],
@@ -746,7 +744,6 @@
       "connectedCities": [
         "Nueva Delhi",
         "Hong Kong",
-        "Madras",
         "Bangkok"
       ],
       "characters": [],
@@ -758,29 +755,7 @@
         "yellow": 0
       }
     },
-    {
-      "name": "Madras",
-      "region": 2,
-      "coordinates": {
-        "x": 1200,
-        "y": 500
-      },
-      "connectedCities": [
-        "Bombay",
-        "Nueva Delhi",
-        "Calcula",
-        "Bangkok",
-        "Yakarta"
-      ],
-      "characters": [],
-      "researchCenter": false,
-      "diseaseCount": {
-        "green": 0,
-        "red": 0,
-        "blue": 0,
-        "yellow": 0
-      }
-    },
+    
     {
       "name": "Yakarta",
       "region": 1,
@@ -789,7 +764,6 @@
         "y": 580
       },
       "connectedCities": [
-        "Madras",
         "Bangkok",
         "Ho Chi Minh",
         "Sidney"
@@ -813,7 +787,6 @@
       "connectedCities": [
         "Yakarta",
         "Calcuta",
-        "Madras",
         "Ho Chi Minh",
         "Hong Kong"
       ],
@@ -982,6 +955,28 @@
       "coordinates": {
         "x": 1290,
         "y": 480
+      },
+      "connectedCities": [
+        "Yakarta",
+        "Bangkok",
+        "Hong Kong",
+        "Manila"
+      ],
+      "characters": [],
+      "researchCenter": false,
+      "diseaseCount": {
+        "green": 0,
+        "red": 0,
+        "blue": 0,
+        "yellow": 0
+      }
+    },
+    {
+      "name": "Ho Chi Minh",
+      "region": 1,
+      "coordinates": {
+        "x": 1290,
+        "y": 440
       },
       "connectedCities": [
         "Yakarta",
