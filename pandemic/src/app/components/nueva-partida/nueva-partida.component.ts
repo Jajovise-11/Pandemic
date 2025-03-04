@@ -33,6 +33,7 @@ export class NuevaPartidaComponent implements OnInit {
   mensajeFinal: string | null = null;
   derrota: boolean = false;
   victoria: boolean = false;
+  mostrarAyuda: boolean = false;
 
   constructor(private cargarJson: CargarJsonService) {}
 
@@ -197,5 +198,9 @@ export class NuevaPartidaComponent implements OnInit {
   getCoordinates(cityName: string): { x: number, y: number } {
     const city = this.ciudades.find(ciudad => ciudad.name === cityName);
     return city ? city.coordinates : { x: 0, y: 0 };
+  }
+
+  toggleAyuda() {
+    this.mostrarAyuda = !this.mostrarAyuda;
   }
 }

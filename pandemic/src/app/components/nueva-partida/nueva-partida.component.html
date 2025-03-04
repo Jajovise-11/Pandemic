@@ -90,5 +90,26 @@
       <li>Amarillo: {{ vacunasDisponibles.yellow }}</li>
     </ul>
   </div>
+<div class="boton-ayuda-container">
+  <button class="boton-ayuda" (click)="toggleAyuda()">❔ Ayuda</button>
+  <div class="info-ayuda" *ngIf="mostrarAyuda">
+    <h3>Guía de Botones</h3>
+    <ul>
+      <li><strong>Saltar Turno:</strong> Avanza al siguiente turno.</li>
+      <li><strong>Vacuna Verde:</strong> Desarrolla una vacuna para la enfermedad verde.</li>
+      <li><strong>Vacuna Roja:</strong> Desarrolla una vacuna para la enfermedad roja.</li>
+      <li><strong>Vacuna Azul:</strong> Desarrolla una vacuna para la enfermedad azul.</li>
+      <li><strong>Vacuna Amarilla:</strong> Desarrolla una vacuna para la enfermedad amarilla.</li>
+      <li><strong>Aplicar Vacuna:</strong> Usa la vacuna en una ciudad afectada.</li>
+      <li><strong>Seleccionar Ciudad:</strong> Muestra la información de la ciudad elegida.</li>
+      <li><strong>Ciudad color verde:</strong> No hay infeccion.🟢</li>
+      <li><strong>Ciudad color amarillo:</strong> Infeccion nivel 1.🟡</li>
+      <li><strong>Ciudad color naranja:</strong> Infeccion nivel 2.🟠</li>
+      <li><strong>Ciudad color morado:</strong> Infeccion nivel 3.🟣</li>
+      <li><strong>Ciudad color rojo:</strong> Infeccion nivel MAXIMO.🔴</li>    
+
+    </ul>
+  </div>
+
   <button routerLink="../menu" class="boton-vuelta">Menú Principal</button>
 </div>
