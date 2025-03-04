@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { Ciudad } from '../../models/ciudades.model';
 import { CargarJsonService } from '../../services/cargar-json.service';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 interface Vacuna {
   color: 'green' | 'red' | 'blue' | 'yellow';
@@ -12,7 +13,7 @@ interface Vacuna {
 @Component({
   selector: 'app-nueva-partida',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, FormsModule],
   templateUrl: './nueva-partida.component.html',
   styleUrls: ['./nueva-partida.component.css']
 })
@@ -20,17 +21,31 @@ export class NuevaPartidaComponent implements OnInit {
   ciudades: Ciudad[] = [];
   ciudadSeleccionada: Ciudad | null = null;
   vacunasEnDesarrollo: Vacuna[] = [];
+  vacunasDisponibles: Record<'green' | 'red' | 'blue' | 'yellow', number> = {
+    green: 0,
+    red: 0,
+    blue: 0,
+    yellow: 0
+  };
   turnos: number = 0;
   juegoTerminado: boolean = false;
+  vacunaSeleccionada: 'green' | 'red' | 'blue' | 'yellow' | null = null;
+  mensajeFinal: string | null = null;
 
   constructor(private cargarJson: CargarJsonService) {}
 
   ngOnInit(): void {
     this.cargarJson.getCiudades().subscribe(response => {
-      this.ciudades = response;
+      if (response && response.length > 0) {
+        this.ciudades = response;
+      } else {
+        console.error('No se encontraron ciudades.');
+      }
+    }, error => {
+      console.error('Error al cargar las ciudades:', error);
     });
   }
-
+  
   mostrarInfo(ciudad: Ciudad): void {
     this.ciudadSeleccionada = ciudad;
   }
@@ -44,21 +59,12 @@ export class NuevaPartidaComponent implements OnInit {
     }
   }
 
-  calcularProgresoPandemia(ciudad: Ciudad): number {
-    const totalEnfermedades = ciudad.diseaseCount.green + ciudad.diseaseCount.red + ciudad.diseaseCount.blue + ciudad.diseaseCount.yellow;
-    return Math.min((totalEnfermedades / 4) * 100, 100);
-  }
-
-  avanzarTurno(): void {
-    if (this.juegoTerminado) return;
-
-    this.turnos++;
-    this.evolucionarVirus();
-    this.actualizarVacunas();
-    this.verificarDerrota();
-  }
-
   evolucionarVirus(): void {
+    if (!this.ciudades || this.ciudades.length === 0) {
+      console.error('Las ciudades no están disponibles para la evolución del virus.');
+      return;
+    }
+  
     this.ciudades.forEach(ciudad => {
       for (const color of ['green', 'red', 'blue', 'yellow'] as const) {
         if (Math.random() < 0.5) {
@@ -66,7 +72,7 @@ export class NuevaPartidaComponent implements OnInit {
         }
       }
     });
-
+  
     this.ciudades.forEach(ciudad => {
       for (const color of ['green', 'red', 'blue', 'yellow'] as const) {
         if (ciudad.diseaseCount[color] === 4) {
@@ -80,21 +86,19 @@ export class NuevaPartidaComponent implements OnInit {
       }
     });
   }
-
+  
   desarrollarVacuna(color: 'green' | 'red' | 'blue' | 'yellow'): void {
-    if (!this.vacunasEnDesarrollo.some(v => v.color === color)) {
-      this.vacunasEnDesarrollo.push({ color, turnosRestantes: 3 });
-    }
+    this.vacunasEnDesarrollo.push({ color, turnosRestantes: 1 });
   }
 
   actualizarVacunas(): void {
     this.vacunasEnDesarrollo.forEach(vacuna => {
       vacuna.turnosRestantes--;
     });
-    
+
     this.vacunasEnDesarrollo = this.vacunasEnDesarrollo.filter(vacuna => {
       if (vacuna.turnosRestantes <= 0) {
-        this.aplicarVacuna(vacuna.color);
+        this.vacunasDisponibles[vacuna.color] += 1;
         return false;
       }
       return true;
@@ -102,25 +106,67 @@ export class NuevaPartidaComponent implements OnInit {
   }
 
   aplicarVacuna(color: 'green' | 'red' | 'blue' | 'yellow'): void {
-    this.ciudades.forEach(ciudad => {
-      if (ciudad.diseaseCount[color] > 0) {
-        ciudad.diseaseCount[color] = Math.max(0, ciudad.diseaseCount[color] - 2);
-      }
-    });
+    if (this.vacunasDisponibles[color] > 0) {
+      this.ciudades.forEach(ciudad => {
+        if (ciudad.diseaseCount[color] > 0) {
+          ciudad.diseaseCount[color] = Math.max(0, ciudad.diseaseCount[color] - 3);
+        }
+      });
+      this.vacunasDisponibles[color]--;
+    } else {
+      alert(`No tienes vacunas disponibles de color ${color}`);
+    }
   }
 
-  verificarDerrota(): void {
-    const juegoPerdido = this.ciudades.every(ciudad => 
+  verificarEstadoJuego(): void {
+    const juegoPerdido = this.ciudades.every(ciudad =>
       ciudad.diseaseCount.green === 4 &&
       ciudad.diseaseCount.red === 4 &&
       ciudad.diseaseCount.blue === 4 &&
       ciudad.diseaseCount.yellow === 4
     );
-    
+
     if (juegoPerdido) {
       this.juegoTerminado = true;
-      alert("¡Has perdido! Todas las ciudades están completamente infectadas.");
+      this.mensajeFinal = "¡Has perdido! Todas las ciudades están completamente infectadas.";
     }
+
+    const juegoGanado = this.ciudades.every(ciudad =>
+      ciudad.diseaseCount.green === 0 &&
+      ciudad.diseaseCount.red === 0 &&
+      ciudad.diseaseCount.blue === 0 &&
+      ciudad.diseaseCount.yellow === 0
+    );
+
+    if (juegoGanado) {
+      this.juegoTerminado = true;
+      this.mensajeFinal = "¡Has ganado! Has eliminado todas las infecciones.";
+    }
+  }
+
+  avanzarTurno(): void {
+    if (this.juegoTerminado) return;
+
+    this.turnos++;
+    if (this.ciudades && this.ciudades.length > 0) {
+      this.evolucionarVirus();
+      this.actualizarVacunas();
+      this.verificarEstadoJuego();
+
+      if (this.juegoTerminado) {
+        return;
+      }
+
+      if (this.turnos % 2 === 0) {
+        this.generarVacunaAleatoria();
+      }
+    }
+  }
+
+  generarVacunaAleatoria(): void {
+    const colores: ('green' | 'red' | 'blue' | 'yellow')[] = ['green', 'red', 'blue', 'yellow'];
+    const colorAleatorio = colores[Math.floor(Math.random() * colores.length)];
+    this.desarrollarVacuna(colorAleatorio);
   }
 
   getCoordinates(cityName: string): { x: number, y: number } {

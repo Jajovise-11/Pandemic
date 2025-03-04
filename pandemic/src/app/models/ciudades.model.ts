@@ -1,4 +1,5 @@
 export interface Ciudad{
+  adyacentes: String[];
   y: any;
   x: any;
   name: string;
@@ -16,5 +17,5 @@ export interface Ciudad{
     blue: number;
     yellow: number;
   };
-  adyacentes: string[];
+
 }

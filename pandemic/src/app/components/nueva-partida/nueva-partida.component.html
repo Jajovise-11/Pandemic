@@ -1,7 +1,5 @@
 <div class="container">
   <img src="/img/mapa_mundo.png" alt="Mapa del mundo" class="fondo">
-
-  <!-- Menú de selección de ciudades -->
   <div class="menu">
     <label for="citySelect">Selecciona una ciudad:</label>
     <select id="citySelect" (change)="mostrarInfoDesdeDropdown($event)">
@@ -9,9 +7,8 @@
     </select>
   </div>
 
-  <!-- Conexiones entre ciudades con líneas -->
   <svg class="conexiones">
-    <ng-container *ngFor="let ciudad of ciudades; let i = index">
+    <ng-container *ngFor="let ciudad of ciudades">
       <line *ngFor="let ady of ciudad.connectedCities"
             [attr.x1]="ciudad.coordinates.x"
             [attr.y1]="ciudad.coordinates.y"
@@ -21,14 +18,6 @@
     </ng-container>
   </svg>
 
-  <!-- Botones de ciudades -->
-  <div *ngFor="let ciudad of ciudades" class="boton-ciudad"
-       [style.left.px]="ciudad.coordinates.x"
-       [style.top.px]="ciudad.coordinates.y"
-       (click)="mostrarInfo(ciudad)">
-  </div>
-
-  <!-- Información de la ciudad seleccionada -->
   <div *ngIf="ciudadSeleccionada" class="informacion">
     <h3>{{ ciudadSeleccionada.name }}</h3>
     <p><strong>Región:</strong> {{ ciudadSeleccionada.region }}</p>
@@ -45,7 +34,6 @@
     </div>
   </div>
 
-  <!-- Tabla de progreso de la infección -->
   <div class="tabla-infeccion">
     <h3>Estado de Infección</h3>
     <table>
@@ -66,15 +54,34 @@
     </table>
   </div>
 
-  <!-- Controles de juego -->
   <div class="controles">
     <button (click)="avanzarTurno()">Saltar Turno</button>
     <button (click)="desarrollarVacuna('green')">Vacuna Verde</button>
     <button (click)="desarrollarVacuna('red')">Vacuna Roja</button>
     <button (click)="desarrollarVacuna('blue')">Vacuna Azul</button>
     <button (click)="desarrollarVacuna('yellow')">Vacuna Amarilla</button>
+    <button (click)="aplicarVacuna('green')">Aplicar Vacuna Verde</button>
+    <button (click)="aplicarVacuna('red')">Aplicar Vacuna Roja</button>
+    <button (click)="aplicarVacuna('blue')">Aplicar Vacuna Azul</button>
+    <button (click)="aplicarVacuna('yellow')">Aplicar Vacuna Amarilla</button>
+  </div>
+<div *ngFor="let ciudad of ciudades" class="boton-ciudad"
+       [style.left.px]="ciudad.coordinates.x"
+       [style.top.px]="ciudad.coordinates.y"
+       (click)="mostrarInfo(ciudad)">
+  </div>
+  <div class="vacunas-disponibles">
+    <h4>Vacunas Disponibles</h4>
+    <ul>
+      <li>Verde: {{ vacunasDisponibles.green }}</li>
+      <li>Rojo: {{ vacunasDisponibles.red }}</li>
+      <li>Azul: {{ vacunasDisponibles.blue }}</li>
+      <li>Amarillo: {{ vacunasDisponibles.yellow }}</li>
+    </ul>
+  </div>
+  <div *ngIf="mensajeFinal" class="mensaje-final">
+    <h2>{{ mensajeFinal }}</h2>
   </div>
 
   <button routerLink="../menu" class="boton-vuelta">Menú Principal</button>
 </div>
-
