@@ -31,6 +31,8 @@ export class NuevaPartidaComponent implements OnInit {
   juegoTerminado: boolean = false;
   vacunaSeleccionada: 'green' | 'red' | 'blue' | 'yellow' | null = null;
   mensajeFinal: string | null = null;
+  derrota: boolean = false;
+  victoria: boolean = false;
 
   constructor(private cargarJson: CargarJsonService) {}
 
@@ -48,15 +50,21 @@ export class NuevaPartidaComponent implements OnInit {
   
   mostrarInfo(ciudad: Ciudad): void {
     this.ciudadSeleccionada = ciudad;
+    setTimeout(() => {
+      document.getElementById('info-ciudad')?.classList.add('mostrar');
+    }, 10);
   }
 
-  mostrarInfoDesdeDropdown(event: any): void {
-    const ciudadSeleccionada = this.ciudades.find(
-      ciudad => ciudad.name === event.target.value
-    );
-    if (ciudadSeleccionada) {
-      this.mostrarInfo(ciudadSeleccionada);
-    }
+  cerrarInfo(): void {
+    document.getElementById('info-ciudad')?.classList.remove('mostrar');
+    setTimeout(() => {
+      this.ciudadSeleccionada = null;
+    }, 300);
+  }
+
+  getButtonColor(ciudad: Ciudad): string {
+    const maxNivel = Math.max(...Object.values(ciudad.diseaseCount) as number[]);
+    return ['green', 'yellow', 'orange', 'purple', 'red'][maxNivel];
   }
 
   evolucionarVirus(): void {
@@ -72,20 +80,26 @@ export class NuevaPartidaComponent implements OnInit {
         }
       }
     });
-  
-    this.ciudades.forEach(ciudad => {
-      for (const color of ['green', 'red', 'blue', 'yellow'] as const) {
-        if (ciudad.diseaseCount[color] === 4) {
-          ciudad.adyacentes.forEach(nombreCiudad => {
-            const ciudadAdyacente = this.ciudades.find(c => c.name === nombreCiudad);
-            if (ciudadAdyacente) {
-              ciudadAdyacente.diseaseCount[color] = Math.min(4, ciudadAdyacente.diseaseCount[color] + 1);
-            }
-          });
-        }
-      }
-    });
   }
+  mostrarInfoDesdeDropdown(event: any): void {
+    const ciudadSeleccionada = this.ciudades.find(
+      ciudad => ciudad.name === event.target.value
+    );
+    if (ciudadSeleccionada) {
+      this.mostrarInfo(ciudadSeleccionada);
+    }
+  }
+
+  getTotalInfection(ciudad: Ciudad): number {
+    return ciudad.diseaseCount.green + ciudad.diseaseCount.red + ciudad.diseaseCount.blue + ciudad.diseaseCount.yellow;
+  }
+
+  getInfectionLevel(ciudad: any): number {
+    const counts = Object.values(ciudad.diseaseCount);
+    const maxInfection = Math.max(...counts as number[]);
+    return Math.min(maxInfection, 4);
+  }
+  
   
   desarrollarVacuna(color: 'green' | 'red' | 'blue' | 'yellow'): void {
     this.vacunasEnDesarrollo.push({ color, turnosRestantes: 1 });
@@ -143,6 +157,17 @@ export class NuevaPartidaComponent implements OnInit {
       this.mensajeFinal = "¡Has ganado! Has eliminado todas las infecciones.";
     }
   }
+
+  verificarVictoriaODerrota() {
+    if (this.derrota) {
+      this.mensajeFinal = "¡Has perdido! La infección ha dominado el mundo.";
+    } else if (this.victoria) {
+      this.mensajeFinal = "¡Felicidades! Has desarrollado todas las vacunas y ganado.";
+    } else {
+      this.mensajeFinal = null; 
+    }
+  }
+  
 
   avanzarTurno(): void {
     if (this.juegoTerminado) return;

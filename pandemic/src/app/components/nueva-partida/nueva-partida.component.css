@@ -41,16 +41,34 @@ select {
 .boton-ciudad {
   position: absolute;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 123, 255, 0.8);
   color: white;
   border: none;
   border-radius: 50%;
-  padding: 8px 12px;
+  width: 24px;
+  height: 24px;
   font-size: 14px;
   cursor: pointer;
   white-space: nowrap;
   z-index: 10;
+  transition: background-color 0.3s ease-in-out;
 }
+
+.nivel-0 { background-color: green; }   
+.nivel-1 { background-color: yellow; }  
+.nivel-2 { background-color: orange; }  
+.nivel-3 { background-color: purple; } 
+.nivel-4 { background-color: red; }   
+
+.nivel-1, .nivel-2, .nivel-3, .nivel-4 {
+  animation: pulso 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes pulso {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  100% { transform: translate(-50%, -50%) scale(1.2); }
+}
+
+
 
 .conexiones {
   position: absolute;
@@ -166,14 +184,23 @@ svg {
 }
 
 .mensaje-final {
-  position: absolute;
+  position: fixed; 
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.85); 
   color: white;
   padding: 20px;
   border-radius: 10px;
   font-size: 24px;
   text-align: center;
+  z-index: 1000; 
+  width: 50%;
+  max-width: 500px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.mensaje-final h2 {
+  margin: 0;
+  font-size: 28px;
 }

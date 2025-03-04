@@ -6,6 +6,9 @@
       <option *ngFor="let ciudad of ciudades" [value]="ciudad.name">{{ ciudad.name }}</option>
     </select>
   </div>
+  <div *ngIf="mensajeFinal" class="mensaje-final fade-in">
+    <h2>{{ mensajeFinal }}</h2>
+  </div>
 
   <svg class="conexiones">
     <ng-container *ngFor="let ciudad of ciudades">
@@ -18,7 +21,7 @@
     </ng-container>
   </svg>
 
-  <div *ngIf="ciudadSeleccionada" class="informacion">
+  <div *ngIf="ciudadSeleccionada" class="informacion fade-in">
     <h3>{{ ciudadSeleccionada.name }}</h3>
     <p><strong>Región:</strong> {{ ciudadSeleccionada.region }}</p>
     <p><strong>Conexiones:</strong> {{ ciudadSeleccionada.connectedCities.join(', ') }}</p>
@@ -65,11 +68,19 @@
     <button (click)="aplicarVacuna('blue')">Aplicar Vacuna Azul</button>
     <button (click)="aplicarVacuna('yellow')">Aplicar Vacuna Amarilla</button>
   </div>
-<div *ngFor="let ciudad of ciudades" class="boton-ciudad"
-       [style.left.px]="ciudad.coordinates.x"
-       [style.top.px]="ciudad.coordinates.y"
-       (click)="mostrarInfo(ciudad)">
-  </div>
+
+  <div *ngFor="let ciudad of ciudades" class="boton-ciudad"
+     [ngClass]="{
+       'nivel-0': getInfectionLevel(ciudad) === 0,
+       'nivel-1': getInfectionLevel(ciudad) === 1,
+       'nivel-2': getInfectionLevel(ciudad) === 2,
+       'nivel-3': getInfectionLevel(ciudad) === 3,
+       'nivel-4': getInfectionLevel(ciudad) === 4
+     }"
+     [style.left.px]="ciudad.coordinates.x"
+     [style.top.px]="ciudad.coordinates.y"
+     (click)="mostrarInfo(ciudad)">
+</div>
   <div class="vacunas-disponibles">
     <h4>Vacunas Disponibles</h4>
     <ul>
@@ -79,9 +90,5 @@
       <li>Amarillo: {{ vacunasDisponibles.yellow }}</li>
     </ul>
   </div>
-  <div *ngIf="mensajeFinal" class="mensaje-final">
-    <h2>{{ mensajeFinal }}</h2>
-  </div>
-
   <button routerLink="../menu" class="boton-vuelta">Menú Principal</button>
 </div>
