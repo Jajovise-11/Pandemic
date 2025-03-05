@@ -59,15 +59,22 @@
 
   <div class="controles">
     <button (click)="avanzarTurno()">Saltar Turno</button>
-    <button (click)="desarrollarVacuna('green')">Vacuna Verde</button>
-    <button (click)="desarrollarVacuna('red')">Vacuna Roja</button>
-    <button (click)="desarrollarVacuna('blue')">Vacuna Azul</button>
-    <button (click)="desarrollarVacuna('yellow')">Vacuna Amarilla</button>
-    <button (click)="aplicarVacuna('green')">Aplicar Vacuna Verde</button>
-    <button (click)="aplicarVacuna('red')">Aplicar Vacuna Roja</button>
-    <button (click)="aplicarVacuna('blue')">Aplicar Vacuna Azul</button>
-    <button (click)="aplicarVacuna('yellow')">Aplicar Vacuna Amarilla</button>
+    
   </div>
+
+  <div class="caja-vacunas">
+    <h3>Vacunas</h3>
+    <b></b>
+    <button (click)="desarrollarVacuna('red')" class="boton-vacuna" data-virus="red">Vacuna Roja</button>
+    <button (click)="desarrollarVacuna('blue')" class="boton-vacuna" data-virus="blue">Vacuna Azul</button>
+    <button (click)="desarrollarVacuna('yellow')" class="boton-vacuna" data-virus="yellow">Vacuna Amarilla</button>
+    <button (click)="desarrollarVacuna('green')" class="boton-vacuna" data-virus="green">Vacuna Verde</button>
+    <button (click)="aplicarVacuna('green')" class="boton-aplicar">Aplicar Vacuna Verde</button>
+    <button (click)="aplicarVacuna('red')" class="boton-aplicar">Aplicar Vacuna Roja</button>
+    <button (click)="aplicarVacuna('blue')" class="boton-aplicar">Aplicar Vacuna Azul</button>
+    <button (click)="aplicarVacuna('yellow')" class="boton-aplicar">Aplicar Vacuna Amarilla</button>
+  </div>
+  
 
   <div *ngFor="let ciudad of ciudades" class="boton-ciudad"
      [ngClass]="{

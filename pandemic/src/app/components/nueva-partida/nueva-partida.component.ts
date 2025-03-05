@@ -70,7 +70,6 @@ export class NuevaPartidaComponent implements OnInit {
 
   evolucionarVirus(): void {
     if (!this.ciudades || this.ciudades.length === 0) {
-      console.error('Las ciudades no están disponibles para la evolución del virus.');
       return;
     }
   
@@ -82,6 +81,7 @@ export class NuevaPartidaComponent implements OnInit {
       }
     });
   }
+  
   mostrarInfoDesdeDropdown(event: any): void {
     const ciudadSeleccionada = this.ciudades.find(
       ciudad => ciudad.name === event.target.value

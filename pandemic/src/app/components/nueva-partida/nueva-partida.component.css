@@ -7,7 +7,7 @@
   justify-content: flex-start;
   align-items: center;
   overflow: hidden;
-  background-color: #f0f0f0;
+  background-color: #000000;
 }
 
 .fondo {
@@ -188,8 +188,8 @@ svg {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.85); 
-  color: white;
+  background-color: rgba(255, 255, 255, 0.85); 
+  color: rgb(0, 0, 0);
   padding: 20px;
   border-radius: 10px;
   font-size: 24px;
@@ -238,7 +238,7 @@ svg {
   position: absolute;
   bottom: 50px;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: #007bff;
   color: white;
   padding: 15px;
   border-radius: 5px;
@@ -248,7 +248,9 @@ svg {
   display: flex;
   flex-direction: column;
 }
-
+.vacunas-disponibles{
+  color: white;
+}
 .info-ayuda h3 {
   margin: 0 0 10px;
   font-size: 18px;
@@ -262,4 +264,38 @@ svg {
 
 .info-ayuda li {
   margin-bottom: 5px;
+}
+
+.caja-vacunas {
+  position: fixed;
+  bottom: 600px;
+  left: 1715px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  width: 160px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.caja-vacunas h3 {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.caja-vacunas button {
+  width: 100%;
+  padding: 4px;
+  font-size: 12px;
+  margin: 2px 0;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.caja-vacunas button:hover {
+  filter: brightness(90%);
 }
