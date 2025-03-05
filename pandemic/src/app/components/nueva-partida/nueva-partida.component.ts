@@ -75,12 +75,13 @@ export class NuevaPartidaComponent implements OnInit {
   
     this.ciudades.forEach(ciudad => {
       for (const color of ['green', 'red', 'blue', 'yellow'] as const) {
-        if (Math.random() < 0.5) {
+        if (Math.random() < 0.3) { 
           ciudad.diseaseCount[color] = Math.min(4, ciudad.diseaseCount[color] + 1);
         }
       }
     });
   }
+  
   
   mostrarInfoDesdeDropdown(event: any): void {
     const ciudadSeleccionada = this.ciudades.find(
@@ -101,9 +102,12 @@ export class NuevaPartidaComponent implements OnInit {
     return Math.min(maxInfection, 4);
   }
   
-  
   desarrollarVacuna(color: 'green' | 'red' | 'blue' | 'yellow'): void {
-    this.vacunasEnDesarrollo.push({ color, turnosRestantes: 1 });
+    if (this.vacunasEnDesarrollo.length > 0) {
+      alert('Solo puedes desarrollar una vacuna a la vez.');
+      return;
+    }
+    this.vacunasEnDesarrollo.push({ color, turnosRestantes: 2 });
   }
 
   actualizarVacunas(): void {
@@ -124,7 +128,7 @@ export class NuevaPartidaComponent implements OnInit {
     if (this.vacunasDisponibles[color] > 0) {
       this.ciudades.forEach(ciudad => {
         if (ciudad.diseaseCount[color] > 0) {
-          ciudad.diseaseCount[color] = Math.max(0, ciudad.diseaseCount[color] - 3);
+          ciudad.diseaseCount[color] = Math.max(0, ciudad.diseaseCount[color] - 2);
         }
       });
       this.vacunasDisponibles[color]--;
@@ -168,33 +172,40 @@ export class NuevaPartidaComponent implements OnInit {
       this.mensajeFinal = null; 
     }
   }
-  
 
   avanzarTurno(): void {
     if (this.juegoTerminado) return;
-
+  
     this.turnos++;
-    if (this.ciudades && this.ciudades.length > 0) {
+  
+    if (this.turnos === 1) {
+      this.infectarCiudadesIniciales();
+    } else {
       this.evolucionarVirus();
-      this.actualizarVacunas();
-      this.verificarEstadoJuego();
+    }
+  
+    this.actualizarVacunas();
+    this.verificarEstadoJuego();
+  
+    if (this.juegoTerminado) return;
+  
+  }
 
-      if (this.juegoTerminado) {
-        return;
-      }
-
-      if (this.turnos % 2 === 0) {
-        this.generarVacunaAleatoria();
-      }
+  infectarCiudadesIniciales(): void {
+    const ciudadesDisponibles = [...this.ciudades];
+    for (let i = 0; i < 5; i++) {
+      if (ciudadesDisponibles.length === 0) break;
+      
+      const indiceAleatorio = Math.floor(Math.random() * ciudadesDisponibles.length);
+      const ciudad = ciudadesDisponibles.splice(indiceAleatorio, 1)[0];
+  
+      const colores: ('green' | 'red' | 'blue' | 'yellow')[] = ['green', 'red', 'blue', 'yellow'];
+      const colorAleatorio = colores[Math.floor(Math.random() * colores.length)] as 'green' | 'red' | 'blue' | 'yellow';
+  
+      ciudad.diseaseCount[colorAleatorio] = 1;
     }
   }
-
-  generarVacunaAleatoria(): void {
-    const colores: ('green' | 'red' | 'blue' | 'yellow')[] = ['green', 'red', 'blue', 'yellow'];
-    const colorAleatorio = colores[Math.floor(Math.random() * colores.length)];
-    this.desarrollarVacuna(colorAleatorio);
-  }
-
+  
   getCoordinates(cityName: string): { x: number, y: number } {
     const city = this.ciudades.find(ciudad => ciudad.name === cityName);
     return city ? city.coordinates : { x: 0, y: 0 };
