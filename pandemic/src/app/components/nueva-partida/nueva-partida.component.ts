@@ -34,7 +34,7 @@ export class NuevaPartidaComponent implements OnInit {
   derrota: boolean = false;
   victoria: boolean = false;
   mostrarAyuda: boolean = false;
-
+  accionesDisponibles: number = 4;
   constructor(private cargarJson: CargarJsonService) {}
 
   ngOnInit(): void {
@@ -48,6 +48,17 @@ export class NuevaPartidaComponent implements OnInit {
       console.error('Error al cargar las ciudades:', error);
     });
   }
+
+  gastarAccion(): void {
+    if (this.accionesDisponibles > 0) {
+      this.accionesDisponibles--;
+    }
+  }
+
+  restaurarAcciones(): void {
+    this.accionesDisponibles = 4;
+  }
+
   
   mostrarInfo(ciudad: Ciudad): void {
     this.ciudadSeleccionada = ciudad;
@@ -75,7 +86,7 @@ export class NuevaPartidaComponent implements OnInit {
   
     this.ciudades.forEach(ciudad => {
       for (const color of ['green', 'red', 'blue', 'yellow'] as const) {
-        if (Math.random() < 0.3) { 
+        if (Math.random() < 0.1) { 
           ciudad.diseaseCount[color] = Math.min(4, ciudad.diseaseCount[color] + 1);
         }
       }
@@ -103,11 +114,16 @@ export class NuevaPartidaComponent implements OnInit {
   }
   
   desarrollarVacuna(color: 'green' | 'red' | 'blue' | 'yellow'): void {
+    if (this.accionesDisponibles === 0) {
+      alert('No tienes acciones disponibles, salta el turno.');
+      return;
+    }
     if (this.vacunasEnDesarrollo.length > 0) {
       alert('Solo puedes desarrollar una vacuna a la vez.');
       return;
     }
     this.vacunasEnDesarrollo.push({ color, turnosRestantes: 2 });
+    this.gastarAccion();
   }
 
   actualizarVacunas(): void {
@@ -125,13 +141,18 @@ export class NuevaPartidaComponent implements OnInit {
   }
 
   aplicarVacuna(color: 'green' | 'red' | 'blue' | 'yellow'): void {
+    if (this.accionesDisponibles === 0) {
+      alert('No tienes acciones disponibles, salta el turno.');
+      return;
+    }
     if (this.vacunasDisponibles[color] > 0) {
-      this.ciudades.forEach(ciudad => {
-        if (ciudad.diseaseCount[color] > 0) {
-          ciudad.diseaseCount[color] = Math.max(0, ciudad.diseaseCount[color] - 2);
+
+        if (this.ciudadSeleccionada!.diseaseCount[color] > 0) {
+          this.ciudadSeleccionada!.diseaseCount[color] = Math.max(0, this.ciudadSeleccionada!.diseaseCount[color] - 2);
         }
-      });
+      
       this.vacunasDisponibles[color]--;
+      this.gastarAccion();
     } else {
       alert(`No tienes vacunas disponibles de color ${color}`);
     }
@@ -177,6 +198,7 @@ export class NuevaPartidaComponent implements OnInit {
     if (this.juegoTerminado) return;
   
     this.turnos++;
+    this.restaurarAcciones();
   
     if (this.turnos === 1) {
       this.infectarCiudadesIniciales();
@@ -186,9 +208,6 @@ export class NuevaPartidaComponent implements OnInit {
   
     this.actualizarVacunas();
     this.verificarEstadoJuego();
-  
-    if (this.juegoTerminado) return;
-  
   }
 
   infectarCiudadesIniciales(): void {

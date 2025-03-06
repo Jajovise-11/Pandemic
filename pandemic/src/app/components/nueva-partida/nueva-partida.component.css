@@ -268,34 +268,93 @@ svg {
 
 .caja-vacunas {
   position: fixed;
-  bottom: 600px;
-  left: 1715px;
+  bottom: 500px;
+  left: 1685px;
   background: rgba(255, 255, 255, 0.9);
-  padding: 5px;
+  padding: 10px;
   border-radius: 5px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
   z-index: 100;
-  width: 160px;
-  font-size: 12px;
+  width: 180px;
+  font-size: 14px;
   text-align: center;
 }
 
 .caja-vacunas h3 {
   margin: 5px 0;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .caja-vacunas button {
   width: 100%;
-  padding: 4px;
-  font-size: 12px;
-  margin: 2px 0;
+  padding: 6px;
+  font-size: 14px;
+  margin: 4px 0;
   border: none;
-  border-radius: 3px;
+  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .caja-vacunas button:hover {
   filter: brightness(90%);
+}
+
+.contenedor-acciones {
+  position: fixed;
+  top: 20px;
+  right: 50%;
+  transform: translateX(50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+.acciones-luces {
+  position: fixed;
+  top: 800px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+.luz {
+  width: 500px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: #28a745;
+  transition: background-color 0.3s ease-in-out;
+  border: 2px solid #fff;
+}
+
+.luz.apagada {
+  background-color: #ccc;
+}
+
+.boton-saltar-turno {
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #dc3545; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.boton-saltar-turno:hover {
+  background-color: #a71d2a;
 }

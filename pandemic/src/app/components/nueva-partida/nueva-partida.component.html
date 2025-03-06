@@ -75,6 +75,14 @@
     <button (click)="aplicarVacuna('yellow')" class="boton-aplicar">Aplicar Vacuna Amarilla</button>
   </div>
   
+  <div class="acciones-luces">
+    <h3>Acciones Disponibles</h3>
+    <div class="luces">
+      <span *ngFor="let i of [0,1,2,3]" 
+            class="luz" 
+            [ngClass]="{'apagada': i >= accionesDisponibles}"></span>
+    </div>
+  </div>
 
   <div *ngFor="let ciudad of ciudades" class="boton-ciudad"
      [ngClass]="{
