@@ -113,13 +113,13 @@
   transition: all 0.3s ease-in-out;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
-.boton-aplicar:nth-child(1) { background: #00cc00; } 
-.boton-aplicar:nth-child(2) { background: #cc0000; } 
-.boton-aplicar:nth-child(3) { background: #007acc; } 
-.boton-aplicar:nth-child(4) { background: #e6b800; } 
+.boton-aplicar:nth-child(2) { background: #00cc00; } 
+.boton-aplicar:nth-child(3) { background: #cc0000; } 
+.boton-aplicar:nth-child(4) { background: #007acc; }
+.boton-aplicar:nth-child(5) { background: #e6b800; } 
 
 .boton-aplicar:hover {
   transform: scale(1.05);
@@ -198,7 +198,7 @@ svg {
 .informacion {
   position: fixed;
   background: black;
-  bottom: 100px;
+  bottom: 150px;
   left: 1700px;
   transform: translateX(-50%);
   width: 320px;
