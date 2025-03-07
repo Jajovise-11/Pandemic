@@ -35,6 +35,14 @@
         <li class="amarillo">Amarillo: {{ ciudadSeleccionada.diseaseCount.yellow }}</li>
       </ul>
     </div>
+
+    <div class="aplicar-vacunas">
+      <h4>Aplicar Vacunas</h4>
+      <button (click)="aplicarVacuna('green')" class="boton-aplicar">Aplicar Vacuna Verde</button>
+      <button (click)="aplicarVacuna('red')" class="boton-aplicar">Aplicar Vacuna Roja</button>
+      <button (click)="aplicarVacuna('blue')" class="boton-aplicar">Aplicar Vacuna Azul</button>
+      <button (click)="aplicarVacuna('yellow')" class="boton-aplicar">Aplicar Vacuna Amarilla</button>
+    </div>
   </div>
 
   <div class="tabla-infeccion">
@@ -59,20 +67,14 @@
 
   <div class="controles">
     <button (click)="avanzarTurno()">Saltar Turno</button>
-    
   </div>
 
   <div class="caja-vacunas">
     <h3>Vacunas</h3>
-    <b></b>
     <button (click)="desarrollarVacuna('red')" class="boton-vacuna" data-virus="red">Vacuna Roja</button>
     <button (click)="desarrollarVacuna('blue')" class="boton-vacuna" data-virus="blue">Vacuna Azul</button>
     <button (click)="desarrollarVacuna('yellow')" class="boton-vacuna" data-virus="yellow">Vacuna Amarilla</button>
     <button (click)="desarrollarVacuna('green')" class="boton-vacuna" data-virus="green">Vacuna Verde</button>
-    <button (click)="aplicarVacuna('green')" class="boton-aplicar">Aplicar Vacuna Verde</button>
-    <button (click)="aplicarVacuna('red')" class="boton-aplicar">Aplicar Vacuna Roja</button>
-    <button (click)="aplicarVacuna('blue')" class="boton-aplicar">Aplicar Vacuna Azul</button>
-    <button (click)="aplicarVacuna('yellow')" class="boton-aplicar">Aplicar Vacuna Amarilla</button>
   </div>
   
   <div class="acciones-luces">
@@ -95,7 +97,8 @@
      [style.left.px]="ciudad.coordinates.x"
      [style.top.px]="ciudad.coordinates.y"
      (click)="mostrarInfo(ciudad)">
-</div>
+  </div>
+  
   <div class="vacunas-disponibles">
     <h4>Vacunas Disponibles</h4>
     <ul>
@@ -105,26 +108,21 @@
       <li>Amarillo: {{ vacunasDisponibles.yellow }}</li>
     </ul>
   </div>
-<div class="boton-ayuda-container">
-  <button class="boton-ayuda" (click)="toggleAyuda()">❔ Ayuda</button>
-  <div class="info-ayuda" *ngIf="mostrarAyuda">
-    <h3>Guía de Botones</h3>
-    <ul>
-      <li><strong>Saltar Turno:</strong> Avanza al siguiente turno.</li>
-      <li><strong>Vacuna Verde:</strong> Desarrolla una vacuna para la enfermedad verde.</li>
-      <li><strong>Vacuna Roja:</strong> Desarrolla una vacuna para la enfermedad roja.</li>
-      <li><strong>Vacuna Azul:</strong> Desarrolla una vacuna para la enfermedad azul.</li>
-      <li><strong>Vacuna Amarilla:</strong> Desarrolla una vacuna para la enfermedad amarilla.</li>
-      <li><strong>Aplicar Vacuna:</strong> Usa la vacuna en una ciudad afectada.</li>
-      <li><strong>Seleccionar Ciudad:</strong> Muestra la información de la ciudad elegida.</li>
-      <li><strong>Ciudad color verde:</strong> No hay infeccion.🟢</li>
-      <li><strong>Ciudad color amarillo:</strong> Infeccion nivel 1.🟡</li>
-      <li><strong>Ciudad color naranja:</strong> Infeccion nivel 2.🟠</li>
-      <li><strong>Ciudad color morado:</strong> Infeccion nivel 3.🟣</li>
-      <li><strong>Ciudad color rojo:</strong> Infeccion nivel MAXIMO.🔴</li>    
 
-    </ul>
+  <div class="boton-ayuda-container">
+    <button class="boton-ayuda" (click)="toggleAyuda()">❔ Ayuda</button>
+    <div class="info-ayuda" *ngIf="mostrarAyuda">
+      <h3>Guía de Botones</h3>
+      <ul>
+        <li><strong>Saltar Turno:</strong> Avanza al siguiente turno.</li>
+        <li><strong>Vacuna Verde:</strong> Desarrolla una vacuna para la enfermedad verde.</li>
+        <li><strong>Vacuna Roja:</strong> Desarrolla una vacuna para la enfermedad roja.</li>
+        <li><strong>Vacuna Azul:</strong> Desarrolla una vacuna para la enfermedad azul.</li>
+        <li><strong>Vacuna Amarilla:</strong> Desarrolla una vacuna para la enfermedad amarilla.</li>
+        <li><strong>Aplicar Vacuna:</strong> Usa la vacuna en una ciudad afectada.</li>
+        <li><strong>Seleccionar Ciudad:</strong> Muestra la información de la ciudad elegida.</li>
+      </ul>
+    </div>
+    <button routerLink="../menu" class="boton-vuelta">Menú Principal</button>
   </div>
-
-  <button routerLink="../menu" class="boton-vuelta">Menú Principal</button>
 </div>
