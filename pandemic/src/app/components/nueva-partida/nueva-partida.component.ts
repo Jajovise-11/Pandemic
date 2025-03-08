@@ -84,15 +84,32 @@ export class NuevaPartidaComponent implements OnInit {
       return;
     }
   
+    let ciudadesNivel4: { ciudad: Ciudad; color: 'green' | 'red' | 'blue' | 'yellow' }[] = [];
+  
     this.ciudades.forEach(ciudad => {
       for (const color of ['green', 'red', 'blue', 'yellow'] as const) {
+        const nivelAntes = ciudad.diseaseCount[color];
+        
         if (Math.random() < 0.1) { 
           ciudad.diseaseCount[color] = Math.min(4, ciudad.diseaseCount[color] + 1);
         }
+  
+        if (nivelAntes < 4 && ciudad.diseaseCount[color] === 4) {
+          ciudadesNivel4.push({ ciudad, color });
+        }
       }
     });
-  }
   
+    ciudadesNivel4.forEach(({ ciudad, color }) => {
+      ciudad.connectedCities?.forEach(nombreVecino => {
+        const ciudadVecina = this.ciudades.find(c => c.name === nombreVecino);
+        if (ciudadVecina) {
+          ciudadVecina.diseaseCount[color] = Math.min(4, ciudadVecina.diseaseCount[color] + 1);
+          console.log(`Propagación: ${ciudad.name} infectó a ${ciudadVecina.name} con ${color}`);
+        }
+      });
+    });
+  }  
   
   mostrarInfoDesdeDropdown(event: any): void {
     const ciudadSeleccionada = this.ciudades.find(
