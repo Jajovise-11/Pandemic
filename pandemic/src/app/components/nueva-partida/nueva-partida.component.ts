@@ -10,6 +10,10 @@ interface Vacuna {
   turnosRestantes: number;
 }
 
+interface Antidoto {
+  color: 'green' | 'red' | 'blue' | 'yellow';
+  turnosRestantes: number;
+}
 @Component({
   selector: 'app-nueva-partida',
   standalone: true,
@@ -18,10 +22,19 @@ interface Vacuna {
   styleUrls: ['./nueva-partida.component.css']
 })
 export class NuevaPartidaComponent implements OnInit {
+  mostrarVacunas: boolean = false;
+  mostrarAntidotos: boolean = false;
   ciudades: Ciudad[] = [];
   ciudadSeleccionada: Ciudad | null = null;
   vacunasEnDesarrollo: Vacuna[] = [];
   vacunasDisponibles: Record<'green' | 'red' | 'blue' | 'yellow', number> = {
+    green: 0,
+    red: 0,
+    blue: 0,
+    yellow: 0
+  };
+  antidotosEnDesarrollo: Antidoto[] = [];
+  antidotosDisponibles: Record<'green' | 'red' | 'blue' | 'yellow', number> = {
     green: 0,
     red: 0,
     blue: 0,
@@ -49,9 +62,9 @@ export class NuevaPartidaComponent implements OnInit {
     });
   }
 
-  gastarAccion(): void {
-    if (this.accionesDisponibles > 0) {
-      this.accionesDisponibles--;
+  gastarAccion(cantidad: number = 1): void {
+    if (this.accionesDisponibles >= cantidad) {
+      this.accionesDisponibles -= cantidad;
     }
   }
 
@@ -59,6 +72,49 @@ export class NuevaPartidaComponent implements OnInit {
     this.accionesDisponibles = 4;
   }
 
+  desarrollarAntidoto(color: 'green' | 'red' | 'blue' | 'yellow'): void {
+    if (this.accionesDisponibles < 4) {
+      alert('Necesitas todas las acciones del turno para desarrollar un antídoto.');
+      return;
+    }
+    this.antidotosEnDesarrollo.push({ color, turnosRestantes: 5 });
+    this.accionesDisponibles = 0;
+  }
+
+  aplicarAntidoto(color: 'green' | 'red' | 'blue' | 'yellow'): void {
+    if (this.accionesDisponibles < 2) {
+      alert('Necesitas 2 acciones para aplicar un antídoto.');
+      return;
+    }
+    if (this.antidotosDisponibles[color] > 0 && this.ciudadSeleccionada) {
+      this.ciudadSeleccionada.diseaseCount[color] = 0;
+      this.antidotosDisponibles[color]--;
+      this.gastarAccion(2);
+    } else {
+      alert(`No tienes antídotos disponibles de color ${color}`);
+    }
+  }
+
+  actualizarDesarrollos(): void {
+    this.vacunasEnDesarrollo.forEach(vacuna => vacuna.turnosRestantes--);
+    this.antidotosEnDesarrollo.forEach(antidoto => antidoto.turnosRestantes--);
+
+    this.vacunasEnDesarrollo = this.vacunasEnDesarrollo.filter(vacuna => {
+      if (vacuna.turnosRestantes <= 0) {
+        this.vacunasDisponibles[vacuna.color] += 1;
+        return false;
+      }
+      return true;
+    });
+
+    this.antidotosEnDesarrollo = this.antidotosEnDesarrollo.filter(antidoto => {
+      if (antidoto.turnosRestantes <= 0) {
+        this.antidotosDisponibles[antidoto.color] += 1;
+        return false;
+      }
+      return true;
+    });
+  }
   
   mostrarInfo(ciudad: Ciudad): void {
     this.ciudadSeleccionada = ciudad;
@@ -131,18 +187,18 @@ export class NuevaPartidaComponent implements OnInit {
   }
   
   desarrollarVacuna(color: 'green' | 'red' | 'blue' | 'yellow'): void {
-    if (this.accionesDisponibles < 2) {
-      alert('Necesitas al menos 2 acciones para desarrollar una vacuna.');
+    if (this.accionesDisponibles < 1) {
+      alert('Necesitas al menos 1 acciones para desarrollar una vacuna.');
       return;
     }
   
-    if (this.vacunasEnDesarrollo.length >= 2) {
-      alert('Solo puedes desarrollar hasta 2 vacunas a la vez.');
+    if (this.vacunasEnDesarrollo.length >= 3) {
+      alert('Solo puedes desarrollar hasta 3 vacunas a la vez.');
       return;
     }
   
-    this.vacunasEnDesarrollo.push({ color, turnosRestantes: 2 });
-    this.accionesDisponibles -= 2;
+    this.vacunasEnDesarrollo.push({ color, turnosRestantes: 1 });
+    this.accionesDisponibles -= 1;
   }
 
   actualizarVacunas(): void {
@@ -167,7 +223,7 @@ export class NuevaPartidaComponent implements OnInit {
   
     if (this.vacunasDisponibles[color] > 0) {
       if (this.ciudadSeleccionada && this.ciudadSeleccionada.diseaseCount[color] > 0) {
-        this.ciudadSeleccionada.diseaseCount[color] = Math.max(0, this.ciudadSeleccionada.diseaseCount[color] - 2);
+        this.ciudadSeleccionada.diseaseCount[color] = Math.max(0, this.ciudadSeleccionada.diseaseCount[color] - 1);
       }
   
       this.vacunasDisponibles[color]--;
@@ -215,17 +271,16 @@ export class NuevaPartidaComponent implements OnInit {
 
   avanzarTurno(): void {
     if (this.juegoTerminado) return;
-  
     this.turnos++;
     this.restaurarAcciones();
-  
+
     if (this.turnos === 1) {
       this.infectarCiudadesIniciales();
     } else {
       this.evolucionarVirus();
     }
-  
-    this.actualizarVacunas();
+
+    this.actualizarDesarrollos();
     this.verificarEstadoJuego();
   }
 

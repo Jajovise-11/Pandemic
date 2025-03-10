@@ -37,11 +37,16 @@
     </div>
 
     <div class="aplicar-vacunas">
-      <h4>Aplicar Vacunas</h4>
-      <button (click)="aplicarVacuna('green')" class="boton-aplicar">Aplicar Vacuna Verde</button>
-      <button (click)="aplicarVacuna('red')" class="boton-aplicar">Aplicar Vacuna Roja</button>
-      <button (click)="aplicarVacuna('blue')" class="boton-aplicar">Aplicar Vacuna Azul</button>
-      <button (click)="aplicarVacuna('yellow')" class="boton-aplicar">Aplicar Vacuna Amarilla</button>
+      <h4>Vacunas</h4>
+      <button (click)="aplicarVacuna('green')" class="boton-aplicar">Usar Vacuna Verde</button>
+      <button (click)="aplicarVacuna('red')" class="boton-aplicar">Usar Vacuna Roja</button>
+      <button (click)="aplicarVacuna('blue')" class="boton-aplicar">Usar Vacuna Azul</button>
+      <button (click)="aplicarVacuna('yellow')" class="boton-aplicar">Usar Vacuna Amarilla</button>
+      <h4>Antidotos</h4>
+      <button (click)="aplicarAntidoto('green')" class="boton-aplicar">Usar Antídoto Verde</button>
+      <button (click)="aplicarAntidoto('red')" class="boton-aplicar">Usar Antídoto Roja</button>
+      <button (click)="aplicarAntidoto('blue')" class="boton-aplicar">Usar Antídoto Azul</button>
+      <button (click)="aplicarAntidoto('yellow')" class="boton-aplicar">Usar Antídoto Amarillo</button>
     </div>
   </div>
 
@@ -69,12 +74,26 @@
     <button (click)="avanzarTurno()">Saltar Turno</button>
   </div>
 
-  <div class="caja-vacunas">
-    <h3>Vacunas</h3>
-    <button (click)="desarrollarVacuna('red')" class="boton-vacuna" data-virus="red">Vacuna Roja</button>
-    <button (click)="desarrollarVacuna('blue')" class="boton-vacuna" data-virus="blue">Vacuna Azul</button>
-    <button (click)="desarrollarVacuna('yellow')" class="boton-vacuna" data-virus="yellow">Vacuna Amarilla</button>
-    <button (click)="desarrollarVacuna('green')" class="boton-vacuna" data-virus="green">Vacuna Verde</button>
+  <div class="caja-desplegables">
+    <div class="desplegable">
+      <h3 (click)="mostrarVacunas = !mostrarVacunas">Vacunas ⬇</h3>
+      <div *ngIf="mostrarVacunas">
+        <button (click)="desarrollarVacuna('red')" class="boton-vacuna" data-virus="red">Vacuna Roja</button>
+        <button (click)="desarrollarVacuna('blue')" class="boton-vacuna" data-virus="blue">Vacuna Azul</button>
+        <button (click)="desarrollarVacuna('yellow')" class="boton-vacuna" data-virus="yellow">Vacuna Amarilla</button>
+        <button (click)="desarrollarVacuna('green')" class="boton-vacuna" data-virus="green">Vacuna Verde</button>
+      </div>
+    </div>
+  
+    <div class="desplegable">
+      <h3 (click)="mostrarAntidotos = !mostrarAntidotos">Antídotos ⬇</h3>
+      <div *ngIf="mostrarAntidotos">
+        <button (click)="desarrollarAntidoto('red')" class="boton-antidoto" data-virus="red">Antídoto Rojo</button>
+        <button (click)="desarrollarAntidoto('blue')" class="boton-antidoto" data-virus="blue">Antídoto Azul</button>
+        <button (click)="desarrollarAntidoto('yellow')" class="boton-antidoto" data-virus="yellow">Antídoto Amarillo</button>
+        <button (click)="desarrollarAntidoto('green')" class="boton-antidoto" data-virus="green">Antídoto Verde</button>
+      </div>
+    </div>
   </div>
   
   <div class="acciones-luces">
@@ -106,6 +125,15 @@
       <li>Rojo: {{ vacunasDisponibles.red }}</li>
       <li>Azul: {{ vacunasDisponibles.blue }}</li>
       <li>Amarillo: {{ vacunasDisponibles.yellow }}</li>
+    </ul>
+  </div>
+  <div class="vacunas1-disponibles">
+    <h4>Antidotos Disponibles</h4>
+    <ul>
+      <li>Verde: {{ antidotosDisponibles.green }}</li>
+      <li>Rojo: {{ antidotosDisponibles.red }}</li>
+      <li>Azul: {{ antidotosDisponibles.blue }}</li>
+      <li>Amarillo: {{ antidotosDisponibles.yellow }}</li>
     </ul>
   </div>
 
